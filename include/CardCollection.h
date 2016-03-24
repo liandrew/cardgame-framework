@@ -11,21 +11,26 @@
 
 class CardCollection {
 protected:
-    std::vector<Card> _vCards;
+    std::vector<Card*> _vCards;
 private:
     std::string _collectionType;
 public:
     CardCollection(std::string type);
-    void transfer(CardCollection to, CardCollection from, int index);
-    void transfer(CardCollection to, CardCollection from, int start, int end);
-    void transferAll(CardCollection to, CardCollection from);
+	virtual ~CardCollection();
+    void transfer(CardCollection& to, int index);
+    void transfer(CardCollection& to, int start, int end);
+    void transferAll(CardCollection& to);
     int size();
-    Card getCard(int index);
-    Card top();
-    Card last();
+    Card* getCard(int index);
+    Card* top();
+    Card* last();
+	Card* operator[](int index);
     void removeCard(int index);
     void removeAll();
-    void addCard(Card card);
+	void clear();
+	int findIndex(Card* card);
+    void addCard(Card* card);
+	std::string getType();
 };
 
 #endif //CARD_GAME_FRAMEWORK_CARDCOLLECTION_H

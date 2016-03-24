@@ -4,18 +4,18 @@
 
 #include "../include/Player.h"
 
-Player::Player(std::string name){
+Player::Player(std::string name) : _hand(nullptr), _selection(nullptr) {
     _name = name;
     _hand = new Hand("Hand");
     _selection = new Hand("Play");
 }
 
 std::string Player::getName(){
-
+	return _name;
 }
 
 bool Player::isHuman(){
-
+	return false;
 }
 
 void Player::setPlayable(IValidatePlay& strategy){
@@ -23,11 +23,19 @@ void Player::setPlayable(IValidatePlay& strategy){
 }
 
 bool Player::isPlayable(Hand selection, Hand topPile){
-
+	return false;
 }
 
-void Player::play(Hand selection, Pile playPile){
+bool Player::play(Hand selection, Hand playPile){
+	return false;
+}
 
+Hand& Player::getHand() {
+	return *_hand;
+}
+
+Hand& Player::getSelection() {
+	return *_selection;
 }
 
 Player::~Player(){

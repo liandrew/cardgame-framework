@@ -5,9 +5,9 @@
 #include "../../include/PokerStrategies/Straight.h"
 
 bool Straight::isPokerPlayable(Hand selection, Hand topPile){
-
+	return false;
 }
 
 bool Straight::playPoker(Hand selection, Hand playPile){
-
+	return false;
 }

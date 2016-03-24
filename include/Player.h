@@ -15,15 +15,17 @@ private:
     std::string _name;
     IValidatePlay* _pValidatePlay;
 protected:
-    Hand* _hand = NULL;
-    Hand* _selection = NULL;
+    Hand* _hand;
+    Hand* _selection;
 public:
     Player(std::string name);
     virtual std::string getName();
     virtual bool isHuman();
     void setPlayable(IValidatePlay& strategy);
-    bool isPlayable(Hand selection, Hand topPile);
-    void play(Hand selection, Pile playPile);
+    virtual bool isPlayable(Hand selection, Hand topPile);
+    virtual bool play(Hand selection, Hand playPile);
+	Hand& getHand();
+	Hand& getSelection();
     virtual ~Player();
 };
 

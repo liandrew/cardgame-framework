@@ -1,0 +1,14 @@
+*.sln
+.vs/Card Game Framework/v14/.suo
+*.sdf
+Card Game Framework.VC.opendb
+*.vcxproj
+Card Game Framework.vcxproj.filters
+*.tlog
+Debug/Card Game Framework.exe
+*.ilk
+Debug/Card Game Framework.pdb
+*.log
+*.obj
+*.idb
+Debug/vc140.pdb

@@ -12,10 +12,10 @@ class Hand : public CardCollection {
 public:
     Hand(const std::string &type);
     void sort();
-    Card findLargerThan(Card card);
-    Card findSmallerThan(Card card);
-    Card findSmallest();
-    Card findLargest();
+    Card* findLargerThan(Card* card);
+    Card* findSmallerThan(Card* card);
+    Card* findSmallest();
+    Card* findLargest();
     std::string toString();
 };
 

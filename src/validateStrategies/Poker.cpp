@@ -4,10 +4,13 @@
 
 #include "../../include/ValidateStrategies/Poker.h"
 
-bool Poker::isPlayable(Hand selection, Hand topPile){
+void Poker::setPokerPlayable(IPokerValidatePlay & strategy) {
+}
 
+bool Poker::isPlayable(Hand selection, Hand topPile){
+	return false;
 }
 
 bool Poker::play(Hand selection, Hand playPile){
-
+	return false;
 }

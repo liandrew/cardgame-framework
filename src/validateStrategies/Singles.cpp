@@ -5,9 +5,9 @@
 #include "../../include/ValidateStrategies/Singles.h"
 
 bool Singles::isPlayable(Hand selection, Hand topPile){
-
+	return false;
 }
 
 bool Singles::play(Hand selection, Hand playPile){
-
+	return false;
 }

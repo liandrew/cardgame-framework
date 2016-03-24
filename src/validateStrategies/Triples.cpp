@@ -5,9 +5,9 @@
 #include "../../include/ValidateStrategies/Triples.h"
 
 bool Triples::isPlayable(Hand selection, Hand topPile){
-
+	return false;
 }
 
 bool Triples::play(Hand selection, Hand playPile){
-
+	return false;
 }

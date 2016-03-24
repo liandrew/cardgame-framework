@@ -13,10 +13,13 @@ class Game {
 private:
     std::string _name;
     std::string _description;
+	bool _isActive;
     int _playLimit;
     int _handLimit;
     int _maxPlayers;
     int _CPUPlayers;
+	int _playerTurn;
+	int _gameTurn;
 protected:
     std::vector<Player*> _vPlayers;
     Deck* _deck = NULL;
@@ -38,14 +41,19 @@ public:
     void setName(std::string);
     std::string getName();
 
-    void createPlayers();
     void shuffleDeck();
+	bool isActive();
+	void setActive(bool active);
 
+	virtual void gameLoop();
+
+	virtual void playerAction(Player& player) = 0;
+	virtual void createPlayers() = 0;
     virtual void dealCards() = 0; // deal cards for solitary game has different behavior
     virtual bool isWinner() = 0;
     virtual void setWinCondition() = 0;
-    virtual void gameLoop() = 0;
-    virtual Player getTurn() = 0;
+    virtual Player& getCurrentPlayer();
+	int getTurn();
 
     ~Game(){
         if(_deck){

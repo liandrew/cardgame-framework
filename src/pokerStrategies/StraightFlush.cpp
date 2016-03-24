@@ -5,9 +5,9 @@
 #include "../../include/PokerStrategies/StraightFlush.h"
 
 bool StraightFlush::isPokerPlayable(Hand selection, Hand topPile){
-
+	return false;
 }
 
 bool StraightFlush::playPoker(Hand selection, Hand playPile){
-
+	return false;
 }
