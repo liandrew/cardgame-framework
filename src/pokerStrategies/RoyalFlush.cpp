@@ -1,0 +1,14 @@
+//
+// Created by Andrew on 2016-03-24.
+//
+
+
+#include "../../include/PokerStrategies/RoyalFlush.h"
+
+bool RoyalFlush::isPokerPlayable(Hand selection, Hand topPile){
+
+}
+
+bool RoyalFlush::playPoker(Hand selection, Hand playPile){
+
+}
