@@ -42,6 +42,7 @@ void TestGame::setWinCondition() {
 
 void TestGame::playerAction(Player& player) {
 	cout << "It's " << player.getName() << "'s Turn!" << endl;
+	player.getHand().sort();
 	cout << "Hand: " << player.getHand().toString() << endl;
 	player.play(player.getSelection(), _pile.getTopHand()); // Don't really understand how play() works yet, why is it making copies of hands?
 	if (!player.getHand().size()) {

@@ -88,3 +88,13 @@ void CardCollection::addCard(Card * card) {
 std::string CardCollection::getType() {
 	return _collectionType;
 }
+
+void CardCollection::addCard(int index, Card* card) {
+	_vCards[index] = card;
+}
+
+Card* CardCollection::popCard(){
+	Card* topCard = _vCards.back();
+	_vCards.pop_back();
+	return topCard;
+}

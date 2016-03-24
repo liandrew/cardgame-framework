@@ -30,7 +30,9 @@ public:
 	void clear();
 	int findIndex(Card* card);
     void addCard(Card* card);
+	void addCard(int index, Card* card);
 	std::string getType();
+	Card* popCard();
 };
 
 #endif //CARD_GAME_FRAMEWORK_CARDCOLLECTION_H
