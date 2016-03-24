@@ -12,3 +12,6 @@ Debug/Card Game Framework.pdb
 *.obj
 *.idb
 Debug/vc140.pdb
+.idea/
+a.out
+a.out.dSYM/
