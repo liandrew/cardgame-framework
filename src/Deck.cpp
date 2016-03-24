@@ -8,6 +8,7 @@
 #include "../include/CardCollection.h"
 #include "../include/Card.h"
 #include "../include/Deck.h"
+#include <cstdlib>
 
 Deck::Deck(const std::string &type) : CardCollection(type){
     for(int suite=0; suite<= 3; suite++){

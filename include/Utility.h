@@ -6,7 +6,7 @@
 
 class Utility {
 public:
-	static std::string Utility::toString(int d);
+	static std::string toString(int d);
 	static std::string toString(float d);
 
 	// http://stackoverflow.com/questions/236129/split-a-string-in-c
