@@ -59,16 +59,14 @@ void CardCollection::removeCard(int index){
 }
 
 void CardCollection::removeFromCardCollection(CardCollection& from){
-	std::vector<Card*>::iterator it = _vCards.begin();
-	int size=from.size();
-    for(int i=0; i < _vCards.size(); i++){
-		for(int i=0; i<from.size(); i++){
-			if(from.getCard(i)->getRank()==(*it)->getRank()
-			   && from.getCard(i)->getSuite()==(*it)->getSuite()){
-				removeCard(i);
-			}
-		}
-	}
+    for(int i=0; i<from.size(); i++){
+        for(int j=0; j < _vCards.size(); j++){
+            if(from.getCard(i)->getRank()==_vCards[j]->getRank()
+               && from.getCard(i)->getSuite()==_vCards[j]->getSuite()){
+                removeCard(j);
+            }
+        }
+    }
 }
 
 void CardCollection::removeAll(){
