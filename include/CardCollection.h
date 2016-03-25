@@ -25,6 +25,7 @@ public:
     Card* top();
     Card* last();
 	Card* operator[](int index);
+	void removeFromCardCollection(CardCollection& from);
     void removeCard(int index);
     void removeAll();
 	void clear();

@@ -7,11 +7,12 @@
 
 #include "../IPokerValidatePlay.h"
 #include "../Hand.h"
+#include "../Pile.h"
 
 class RoyalFlush : public IPokerValidatePlay {
 public:
     bool isPokerPlayable(Hand selection, Hand topPile);
-    bool playPoker(Hand selection, Hand playPile);
+    bool isValidPokerMove(Hand selection, Hand topPile);
 };
 
 #endif //CARD_GAME_FRAMEWORK_ROYALFLUSH_H

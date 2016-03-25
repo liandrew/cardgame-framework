@@ -8,6 +8,6 @@ bool Triples::isPlayable(Hand selection, Hand topPile){
 	return false;
 }
 
-bool Triples::play(Hand selection, Hand playPile){
+bool Triples::isValidMove(Hand selection, Hand topPile){
 	return false;
 }

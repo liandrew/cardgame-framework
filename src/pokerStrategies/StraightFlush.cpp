@@ -8,6 +8,6 @@ bool StraightFlush::isPokerPlayable(Hand selection, Hand topPile){
 	return false;
 }
 
-bool StraightFlush::playPoker(Hand selection, Hand playPile){
+bool StraightFlush::isValidPokerMove(Hand selection, Hand topPile){
 	return false;
 }

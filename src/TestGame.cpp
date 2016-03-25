@@ -1,12 +1,16 @@
 #include "../include/TestGame.h"
+#include "../include/validateStrategies/Singles.h"
 
 #include <iostream>
 
 using namespace std;
 
-TestGame::TestGame() : Game("Test Game"), _pile("Test Pile") {
+TestGame::TestGame() : Game("Test Game"){
+	_pile = new Pile("Pile");
 	_winningPlayer = nullptr;
 	setHandLimit(5);
+	setMaxCardsPerPlay(5);
+
 	shuffleDeck();
 
 	for (int i = 0; i < _deck->size(); ++i) {
@@ -20,7 +24,6 @@ void TestGame::createPlayers() {
 }
 
 void TestGame::dealCards() {
-	_pile.setTopHand(Hand("Garbage Pile"));
 	int handSize = getHandLimit();
 	_deck->deal(_vPlayers[0]->getHand(), handSize);
 	_deck->deal(_vPlayers[1]->getHand(), handSize);
@@ -29,8 +32,13 @@ void TestGame::dealCards() {
 	cout << "-----------------------------------" << endl;
 }
 
-bool TestGame::isWinner() {
-	return false; // I don't really understand this function's usage.
+bool TestGame::isWinner(Player &player) { // sorry i forgot to add player in parameter, it should make sense now
+	if (!player.getHand().size()) {
+		_winningPlayer = &player;
+		setWinCondition();
+		return true;
+	}
+	return false; // I don't really understand this function's usage
 }
 
 void TestGame::setWinCondition() {
@@ -44,11 +52,17 @@ void TestGame::playerAction(Player& player) {
 	cout << "It's " << player.getName() << "'s Turn!" << endl;
 	player.getHand().sort();
 	cout << "Hand: " << player.getHand().toString() << endl;
-	player.play(player.getSelection(), _pile.getTopHand()); // Don't really understand how play() works yet, why is it making copies of hands?
-	if (!player.getHand().size()) {
-		_winningPlayer = &player;
-		setWinCondition();
-	}
+	//player.play(player.getSelection(), _pile.getTopHand()); // Don't really understand how play() works yet, why is it making copies of hands?
+	Singles singlesStrategy;
+	player.setPlayable(singlesStrategy);
+
+	std::cout << std::endl << "Pile: " << std::endl;
+	std::cout << _pile->toString() << std::endl;
+	std::cout <<  std::endl;
+
+	player.makeSelection(getMaxCardsPerPlay());
+	player.play(*_pile);
+	isWinner(player);
 }
 
 TestPlayer::TestPlayer(std::string name) : Player(name) { }
@@ -58,4 +72,10 @@ bool TestPlayer::play(Hand selection, Hand playPile) {
 	_hand->transfer(playPile, 0);
 	cout << "Transfered " << card->toFullString() << " to " << playPile.getType() << endl;
 	return true;
+}
+
+TestGame::~TestGame() {
+	if(_pile){
+		delete _pile;
+	}
 }

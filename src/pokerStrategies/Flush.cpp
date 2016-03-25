@@ -8,6 +8,6 @@ bool Flush::isPokerPlayable(Hand selection, Hand topPile){
 	return false;
 }
 
-bool Flush::playPoker(Hand selection, Hand playPile){
+bool Flush::isValidPokerMove(Hand selection, Hand topPile) {
 	return false;
 }

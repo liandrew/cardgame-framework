@@ -8,6 +8,6 @@ bool FullHouse::isPokerPlayable(Hand selection, Hand topPile){
 	return false;
 }
 
-bool FullHouse::playPoker(Hand selection, Hand playPile){
+bool FullHouse::isValidPokerMove(Hand selection, Hand topPile) {
 	return false;
 }

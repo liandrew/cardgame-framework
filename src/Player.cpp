@@ -3,6 +3,7 @@
 //
 
 #include "../include/Player.h"
+#include "../include/validateStrategies/Singles.h"
 
 Player::Player(std::string name) : _hand(nullptr), _selection(nullptr) {
     _name = name;
@@ -19,15 +20,45 @@ bool Player::isHuman(){
 }
 
 void Player::setPlayable(IValidatePlay& strategy){
-
+    _pValidatePlay = &strategy;
 }
 
 bool Player::isPlayable(Hand selection, Hand topPile){
-	return false;
+	return _pValidatePlay->isPlayable(selection, topPile);
+    ;
 }
 
-bool Player::play(Hand selection, Hand playPile){
-	return false;
+bool Player::isValidMove(Hand selection, Hand topPile) {
+    return  _pValidatePlay->isValidMove(selection, topPile);
+}
+
+bool Player::makeSelection(int playLimit){
+    std::string selection;
+    int limit = 1;
+    std::cout << getName() << " make your selection: (p=pass, d=done)" << std::endl;
+    while ((limit <= playLimit) && (std::cin >> selection) && (selection.compare("d")!=0)){
+        if(selection.compare("p")==0){
+            return false;
+        }
+        int cardIndex = atoi(selection.c_str());
+
+        if((cardIndex >=0) && (cardIndex <= _hand->size())){
+            // adds card to players selection
+            Card* move = _hand->getCard(cardIndex);
+            _selection->addCard(move);
+        }
+        limit++;
+    }
+	return true;
+}
+
+bool Player::play(Pile &playPile) {
+    playPile.setTopHand(*_selection);
+    // commit play by removing selection from hand
+    _hand->removeFromCardCollection(*_selection);
+    // clear selection
+    _selection->removeAll();
+    return false;
 }
 
 Hand& Player::getHand() {

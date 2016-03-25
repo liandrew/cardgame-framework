@@ -11,7 +11,7 @@
 class FullHouse : public IPokerValidatePlay {
 public:
     bool isPokerPlayable(Hand selection, Hand topPile);
-    bool playPoker(Hand selection, Hand playPile);
+    bool isValidPokerMove(Hand selection, Hand topPile);
 };
 
 #endif //CARD_GAME_FRAMEWORK_FULLHOUSE_H

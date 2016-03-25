@@ -8,12 +8,15 @@
 #include "../IValidatePlay.h"
 #include "../Hand.h"
 #include "../IPokerValidatePlay.h"
+#include "../Pile.h"
 
 class Poker : public IValidatePlay {
 public:
     void setPokerPlayable(IPokerValidatePlay& strategy);
+    bool isPokerPlayable(Hand selection, Hand topPile);
+    bool isValidPokerMove(Hand selection, Hand topPile);
     bool isPlayable(Hand selection, Hand topPile);
-    bool play(Hand selection, Hand playPile);
+    bool isValidMove(Hand selection, Hand topPile);
 };
 
 #endif //CARD_GAME_FRAMEWORK_POKER_H

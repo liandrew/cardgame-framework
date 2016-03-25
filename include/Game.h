@@ -50,7 +50,7 @@ public:
 	virtual void playerAction(Player& player) = 0;
 	virtual void createPlayers() = 0;
     virtual void dealCards() = 0; // deal cards for solitary game has different behavior
-    virtual bool isWinner() = 0;
+    virtual bool isWinner(Player &player) = 0;
     virtual void setWinCondition() = 0;
     virtual Player& getCurrentPlayer();
 	int getTurn();

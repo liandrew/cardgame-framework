@@ -10,7 +10,7 @@ CardCollection::CardCollection(std::string type){
 }
 
 CardCollection::~CardCollection() {
-	clear();
+    //clear(); // commenting out for now since causing memory issues
 }
 
 void CardCollection::transfer(CardCollection& to, int index){
@@ -56,6 +56,19 @@ Card * CardCollection::operator[](int index) {
 
 void CardCollection::removeCard(int index){
 	_vCards.erase(_vCards.begin() + index);
+}
+
+void CardCollection::removeFromCardCollection(CardCollection& from){
+	std::vector<Card*>::iterator it = _vCards.begin();
+	int size=from.size();
+    for(int i=0; i < _vCards.size(); i++){
+		for(int i=0; i<from.size(); i++){
+			if(from.getCard(i)->getRank()==(*it)->getRank()
+			   && from.getCard(i)->getSuite()==(*it)->getSuite()){
+				removeCard(i);
+			}
+		}
+	}
 }
 
 void CardCollection::removeAll(){

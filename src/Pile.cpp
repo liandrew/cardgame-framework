@@ -10,15 +10,15 @@ Pile::Pile(const std::string &type){
 }
 
 void Pile::setPile(std::vector<Hand> vPile){
-
+	_vPile = vPile;
 }
 
 std::vector<Hand> Pile::getPile(){
-	return std::vector<Hand>();
+	return _vPile;
 }
 
 Hand Pile::getTopHand(){
-	return _vPile[_vPile.size() - 1];
+	return _vPile.back();
 }
 
 void Pile::setTopHand(Hand play){
@@ -26,7 +26,7 @@ void Pile::setTopHand(Hand play){
 }
 
 void Pile::clearPile(){
-
+	_vPile.clear();
 }
 
 int Pile::pileSize(){
@@ -34,5 +34,10 @@ int Pile::pileSize(){
 }
 
 std::string Pile::toString(){
-	return _type;
+	std::string result = "";
+	std::vector<Hand>::iterator it = Pile::_vPile.begin();
+	for(; it != Pile::_vPile.end(); ++it) {
+		result = result + (*it).toString();
+	}
+	return result;
 }
