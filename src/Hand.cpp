@@ -9,12 +9,10 @@
 Hand::Hand(const std::string &type) : CardCollection(type){}
 
 void Hand::sort(){
-	int i, j = 0;
 	int n = this->size();
 	Hand temp("");
-	std::vector<Card*>::iterator it = Hand::_vCards.begin();
-	for (i = n - 1; i > 0; i--) {
-		for (j = 0; j < i; j++) {
+	for (unsigned int i = n - 1; i > 0; i--) {
+		for (unsigned int j = 0; j < i; j++) {
 			if (_vCards[j]->getRank() > _vCards[j+1]->getRank()) {
 				temp.addCard(this->getCard(j));
 				this->addCard(j, this->_vCards[j+1]);
