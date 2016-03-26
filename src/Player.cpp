@@ -25,7 +25,6 @@ void Player::setPlayable(IValidatePlay& strategy){
 
 bool Player::isPlayable(Hand selection, Hand topPile){
 	return _pValidatePlay->isPlayable(selection, topPile);
-    ;
 }
 
 bool Player::isValidMove(Hand selection, Hand topPile) {
@@ -48,6 +47,24 @@ bool Player::makeSelection(int playLimit){
             _selection->addCard(move);
         }
         limit++;
+    }
+    switch(_selection->size()){
+        case 1:
+            std::cout << "singles strat" << std::endl;
+            setPlayable(singlesStrategy);
+            break;
+        case 2:
+            std::cout << "pairs strat" << std::endl;
+            setPlayable(pairsStrategy);
+            break;
+        case 3:
+            std::cout << "triples strat" << std::endl;
+            setPlayable(triplesStrategy);
+            break;
+        case 5:
+            std::cout << "poker strat" << std::endl;
+            setPlayable(pokerStrategy);
+            break;
     }
 	return true;
 }

@@ -7,7 +7,7 @@
 
 #include <string>
 
-enum Suite { HEARTS, DIAMONDS, SPADES, CLUBS };
+enum Suite { DIAMONDS, CLUBS, HEARTS, SPADES}; // order by least to greatestp
 
 class Card {
 

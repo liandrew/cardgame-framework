@@ -74,9 +74,9 @@ void CardCollection::removeAll(){
 }
 
 void CardCollection::clear() {
-	for (int i = _vCards.size() - 1; i >= 0; --i) {
-		delete _vCards[i];
-	}
+//	for (int i = _vCards.size() - 1; i >= 0; --i) {
+//		delete _vCards[i];
+//	}
 	_vCards.clear();
 }
 

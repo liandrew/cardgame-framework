@@ -7,8 +7,11 @@ using namespace std;
 
 TestGame::TestGame() : Game("Test Game"){
 	_pile = new Pile("Pile");
+	Hand top = Hand("Pile");
+	_pile->setTopHand(top);
+
 	_winningPlayer = nullptr;
-	setHandLimit(5);
+	setHandLimit(13);
 	setMaxCardsPerPlay(5);
 
 	shuffleDeck();
@@ -52,17 +55,28 @@ void TestGame::playerAction(Player& player) {
 	cout << "It's " << player.getName() << "'s Turn!" << endl;
 	player.getHand().sort();
 	cout << "Hand: " << player.getHand().toString() << endl;
-	//player.play(player.getSelection(), _pile.getTopHand()); // Don't really understand how play() works yet, why is it making copies of hands?
-	Singles singlesStrategy;
-	player.setPlayable(singlesStrategy);
-
 	std::cout << std::endl << "Pile: " << std::endl;
 	std::cout << _pile->toString() << std::endl;
 	std::cout <<  std::endl;
 
-	player.makeSelection(getMaxCardsPerPlay());
-	player.play(*_pile);
-	isWinner(player);
+	bool isPlayable = true;
+
+	do{
+		player.makeSelection(getMaxCardsPerPlay());
+
+		if(_pile->pileSize() != '\0'){
+			isPlayable = player.isPlayable(player.getSelection(), _pile->getTopHand());
+		}
+
+		if(isPlayable){
+			player.play(*_pile);
+			isWinner(player);
+		}else{
+			std::cout << std::endl << "Invalid Move - try again" << std::endl << std::endl;
+			player.getSelection().clear();
+		}
+
+	}while(!isPlayable);
 }
 
 TestPlayer::TestPlayer(std::string name) : Player(name) { }

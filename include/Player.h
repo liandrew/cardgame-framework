@@ -9,11 +9,19 @@
 #include "Hand.h"
 #include "Pile.h"
 #include "IValidatePlay.h"
+#include "validateStrategies/Singles.h"
+#include "validateStrategies/Pairs.h"
+#include "validateStrategies/Triples.h"
+#include "validateStrategies/Poker.h"
 
 class Player {
 private:
     std::string _name;
     IValidatePlay* _pValidatePlay;
+    Singles singlesStrategy;
+    Pairs pairsStrategy;
+    Triples triplesStrategy;
+    Poker pokerStrategy;
 protected:
     Hand* _hand = NULL;
     Hand* _selection = NULL;

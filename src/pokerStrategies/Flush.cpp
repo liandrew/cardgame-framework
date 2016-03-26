@@ -5,6 +5,11 @@
 #include "../../include/PokerStrategies/Flush.h"
 
 bool Flush::isPokerPlayable(Hand selection, Hand topPile){
+	// Highest rank at the top of the sequence wins.
+	if((topPile.size() != '\0')
+	   && (selection.getCard(0)->getRank() > topPile.getCard(0)->getRank())){
+		return true;
+	}
 	return false;
 }
 

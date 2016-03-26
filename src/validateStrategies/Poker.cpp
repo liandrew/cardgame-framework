@@ -2,23 +2,145 @@
 // Created by Andrew on 2016-03-24.
 //
 
+#include <map>
+#include <iostream>
 #include "../../include/ValidateStrategies/Poker.h"
+#include "../../include/pokerStrategies/StraightFlush.h"
+#include "../../include/pokerStrategies/FourOfAKind.h"
+#include "../../include/pokerStrategies/FullHouse.h"
+#include "../../include/pokerStrategies/Straight.h"
 
 void Poker::setPokerPlayable(IPokerValidatePlay &strategy) {
+	_pValidatePokerPlay = &strategy;
 }
 
 bool Poker::isPokerPlayable(Hand selection, Hand topPile){
-	return false;
+	return _pValidatePokerPlay->isPokerPlayable(selection, topPile);
 }
 
-bool Poker::isValidPokerMove(Hand selection, Hand topPile){
-	return false;
+PokerHand Poker::isPokerMoveValid(Hand selection){
+	if(selection.size()!='\0' && selection.size()==5){
+		// start analyzing
+		bool isHandOrdered = true;
+		bool areSuitesAllSame = true;
+
+		int orderTrack = 0;
+		int suiteTrack = 0;
+		std::map<int,int> matchingRankList;
+
+		selection.sort();
+
+		for(int i=0; i<selection.size();i++){
+			int rankIndex = selection.getCard(i)->getRank();
+			int suiteIndex = selection.getCard(i)->getSuite();
+
+			try{
+				int value = matchingRankList.at(rankIndex);
+				matchingRankList[rankIndex] = ++value;
+			}catch (std::out_of_range e){
+				matchingRankList[rankIndex] = 1;
+			}
+
+			if(orderTrack==0){
+				orderTrack = rankIndex;
+				suiteTrack = suiteIndex;
+			}else {
+				if (orderTrack != rankIndex) {
+					isHandOrdered = false;
+				}
+				if (suiteTrack != suiteIndex){
+					areSuitesAllSame = false;
+				}
+			}
+			orderTrack++;
+		}
+
+		int largest=0;
+		int value=0;
+
+		std::map<int,int>::iterator mIt = matchingRankList.begin();
+		for(; mIt != matchingRankList.end(); ++mIt){
+			value = (*mIt).second;
+			if(value>largest){
+				largest = value;
+			}
+		}
+
+		if(largest==4){
+			return FOUROFAKIND;
+		}else if(largest==3){
+			return FULLHOUSE;
+		}
+
+		if(isHandOrdered){
+			if(areSuitesAllSame){
+				return STRAIGHTFLUSH;
+			}else{
+				return STRAIGHT;
+			}
+		}else if((!isHandOrdered && areSuitesAllSame)){
+			return FLUSH;
+		}
+	}
+	return INVALID;
 }
 
 bool Poker::isPlayable(Hand selection, Hand topPile){
-	return false;
+        bool result = false;
+		PokerHand myPokerValue;
+		PokerHand pilePokerValue;
+
+		myPokerValue = isPokerMoveValid(selection);
+		pilePokerValue = isPokerMoveValid(topPile);
+
+		if(myPokerValue == INVALID) {
+			return false;
+		}else if(pilePokerValue == INVALID){
+			return true;
+		}else if(myPokerValue == pilePokerValue){
+			StraightFlush straightFlushStrategy;
+			FourOfAKind fourOfAKindStrategy;
+			FullHouse fullhouseStrategy;
+			Straight straightStrategy;
+
+			switch (myPokerValue) {
+				case STRAIGHTFLUSH:
+					std::cout << "straight flush" << std::endl;
+					setPokerPlayable(straightFlushStrategy);
+					break;
+				case FOUROFAKIND:
+					std::cout << "four of a kind" << std::endl;
+					setPokerPlayable(fourOfAKindStrategy);
+					break;
+				case FULLHOUSE:
+					std::cout << "full house" << std::endl;
+					setPokerPlayable(fullhouseStrategy);
+					break;
+				case FLUSH:
+					std::cout << "flush" << std::endl;
+					setPokerPlayable(straightFlushStrategy);
+					break;
+				case STRAIGHT:
+					std::cout << "straight flush" << std::endl;
+					setPokerPlayable(straightStrategy);
+					break;
+			}
+			std::cout << "2 size is " << selection.size() << std::endl;
+			std::cout << "2 selection tostring " << selection.toString() << std::endl;
+
+			result = isPokerPlayable(selection,topPile);
+			std::cout << std::endl;
+			std::cout << "my play hand: " << std::endl;
+			selection.toString();
+			std::cout << std::endl;
+			std::cout << "top pile: " << std::endl;
+			topPile.toString();
+			std::cout << std::endl;
+			std::cout << std::endl << std::endl;
+		}
+	return result;
 }
 
 bool Poker::isValidMove(Hand selection, Hand topPile){
-	return false;
+	return (isPokerMoveValid(selection) != INVALID);
 }
