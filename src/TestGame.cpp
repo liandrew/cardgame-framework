@@ -59,21 +59,20 @@ void TestGame::playerAction(Player& player) {
 	std::cout << _pile->toString() << std::endl;
 	std::cout <<  std::endl;
 
-	bool isPlayable = true;
+	bool isPlayable;
+	bool isValid;
 
 	do{
-		player.makeSelection(getMaxCardsPerPlay());
+		isValid = player.makeSelection(getMaxCardsPerPlay());
 
-		if(_pile->pileSize() != '\0'){
-			isPlayable = player.isPlayable(player.getSelection(), _pile->getTopHand());
-		}
+        isPlayable = player.isPlayable(player.getSelection(), _pile->getTopHand());
 
 		if(isPlayable){
 			player.play(*_pile);
 			isWinner(player);
 		}else{
 			std::cout << std::endl << "Invalid Move - try again" << std::endl << std::endl;
-			player.getSelection().clear();
+			player.clearSelection();
 		}
 
 	}while(!isPlayable);

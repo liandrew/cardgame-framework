@@ -32,7 +32,8 @@ public:
     void setPlayable(IValidatePlay& strategy);
     virtual bool isPlayable(Hand selection, Hand topPile);
     virtual bool makeSelection(int playLimit);
-    virtual bool isValidMove(Hand selection, Hand topPile);
+    virtual void clearSelection();
+    virtual bool isValid(Hand selection);
     virtual bool play(Pile& playPile);
     Hand& getHand();
     Hand& getSelection();

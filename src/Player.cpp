@@ -27,7 +27,7 @@ bool Player::isPlayable(Hand selection, Hand topPile){
 	return _pValidatePlay->isPlayable(selection, topPile);
 }
 
-bool Player::isValidMove(Hand selection, Hand topPile) {
+bool Player::isValid(Hand selection) {
     return  _pValidatePlay->isValid(selection);
 }
 
@@ -41,12 +41,12 @@ bool Player::makeSelection(int playLimit){
         }
         int cardIndex = atoi(selection.c_str());
 
-        if((cardIndex >=0) && (cardIndex <= _hand->size())){
+        if((cardIndex >=0) && (cardIndex < _hand->size())){
             // adds card to players selection
             Card* move = _hand->getCard(cardIndex);
             _selection->addCard(move);
+            limit++;
         }
-        limit++;
     }
     switch(_selection->size()){
         case 1:
@@ -65,8 +65,12 @@ bool Player::makeSelection(int playLimit){
             std::cout << "poker strat" << std::endl;
             setPlayable(pokerStrategy);
             break;
+        default:
+            std::cout << "defaulting to singles strat" << std::endl;
+            setPlayable(singlesStrategy);
+            break;
     }
-	return true;
+	return isValid(*_selection);
 }
 
 bool Player::play(Pile &playPile) {
@@ -93,4 +97,8 @@ Player::~Player(){
     if (_selection){
         delete _selection;
     }
+}
+
+void Player::clearSelection() {
+    _selection->clear();
 }
