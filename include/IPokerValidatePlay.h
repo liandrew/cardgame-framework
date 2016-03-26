@@ -10,7 +10,6 @@
 class IPokerValidatePlay {
 public:
     virtual bool isPokerPlayable(Hand selection, Hand topPile) = 0;
-    virtual bool isValidPokerMove(Hand selection, Hand topPile) = 0;
 };
 
 #endif //CARD_GAME_FRAMEWORK_IPOKERVALIDATEPLAY_H

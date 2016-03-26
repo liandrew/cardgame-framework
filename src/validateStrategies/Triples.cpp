@@ -5,17 +5,15 @@
 #include "../../include/ValidateStrategies/Triples.h"
 
 bool Triples::isPlayable(Hand selection, Hand topPile){
-	if(isValidMove(selection, topPile)) {
-		int myRank = selection.getCard(0)->getRank();
-
-		int topRank=-1;
-
-		if(topPile.size()!='\0'){
-			if(topPile.size() > 3){
-				return false;
-			}
-			topRank = topPile.getCard(0)->getRank();
+	if(isValid(selection)) {
+		if(topPile.size()=='\0'){
+			return true;
+		}else if(topPile.size() != 3){
+			return false;
 		}
+
+		int myRank = selection.getCard(0)->getRank();
+        int topRank = topPile.getCard(0)->getRank();
 
 		if (myRank > topRank) {
 			return true;
@@ -24,7 +22,7 @@ bool Triples::isPlayable(Hand selection, Hand topPile){
 	return false;
 }
 
-bool Triples::isValidMove(Hand selection, Hand topPile){
+bool Triples::isValid(Hand selection){
 	if((selection.size() != '\0') && (selection.size()==3)){
 		if((selection.getCard(0)->getRank() == selection.getCard(1)->getRank())
 		   && selection.getCard(1)->getRank() == selection.getCard(2)->getRank()){

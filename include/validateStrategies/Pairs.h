@@ -11,7 +11,7 @@
 class Pairs : public IValidatePlay {
 public:
     bool isPlayable(Hand selection, Hand topPile);
-    bool isValidMove(Hand selection, Hand topPile);
+    bool isValid(Hand selection);
 };
 
 #endif //CARD_GAME_FRAMEWORK_PAIRS_H

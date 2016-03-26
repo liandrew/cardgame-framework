@@ -11,7 +11,6 @@
 class Straight : public IPokerValidatePlay {
 public:
     bool isPokerPlayable(Hand selection, Hand topPile);
-    bool isValidPokerMove(Hand selection, Hand topPile);
 };
 
 #endif //CARD_GAME_FRAMEWORK_STRAIGHT_H

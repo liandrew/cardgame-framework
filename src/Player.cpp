@@ -28,7 +28,7 @@ bool Player::isPlayable(Hand selection, Hand topPile){
 }
 
 bool Player::isValidMove(Hand selection, Hand topPile) {
-    return  _pValidatePlay->isValidMove(selection, topPile);
+    return  _pValidatePlay->isValid(selection);
 }
 
 bool Player::makeSelection(int playLimit){

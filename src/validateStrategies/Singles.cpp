@@ -5,20 +5,18 @@
 #include "../../include/ValidateStrategies/Singles.h"
 
 bool Singles::isPlayable(Hand selection, Hand topPile){
-    if(isValidMove(selection, topPile)){
+    if(isValid(selection)){
+        if(topPile.size() == '\0'){
+            return true;
+        }else if(topPile.size() != 1){
+            return false;
+        }
+
         int myRank = selection.getCard(0)->getRank();
         int mySuite = selection.getCard(0)->getSuite();
 
-        int topRank=-1;
-        int topSuite=-1;
-
-        if(topPile.size() != '\0'){
-            if(topPile.size() > 1){
-                return false;
-            }
-            topRank = topPile.getCard(0)->getRank();
-            topSuite = topPile.getCard(0)->getSuite();
-        }
+        int topRank = topPile.getCard(0)->getRank();
+        int topSuite = topPile.getCard(0)->getSuite();
 
         if(myRank > topRank){
             return true;
@@ -31,6 +29,6 @@ bool Singles::isPlayable(Hand selection, Hand topPile){
     return false;
 }
 
-bool Singles::isValidMove(Hand selection, Hand topPile){
+bool Singles::isValid(Hand selection){
     return ((selection.size() != '\0') && (selection.size()==1));
 }

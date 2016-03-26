@@ -8,7 +8,3 @@
 bool RoyalFlush::isPokerPlayable(Hand selection, Hand topPile){
 	return false;
 }
-
-bool RoyalFlush::isValidPokerMove(Hand selection, Hand topPile) {
-	return false;
-}
