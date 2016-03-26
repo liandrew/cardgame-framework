@@ -29,7 +29,5 @@ bool FullHouse::isPokerPlayable(Hand selection, Hand topPile){
         pileHighest=topPile.getCard(4)->getRank();
     }
 
-	if(myHighest > pileHighest){
-		return true;
-	}
+	return (myHighest > pileHighest);
 }
