@@ -16,7 +16,7 @@ public:
     Pile(const std::string &type);
     void setPile(std::vector<Hand> vPile);
     std::vector<Hand> getPile();
-    Hand getTopHand();
+    Hand & getTopHand();
     void setTopHand(Hand play);
     void clearPile();
     int pileSize();

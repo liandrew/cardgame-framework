@@ -18,6 +18,7 @@ class Player {
 private:
     std::string _name;
     IValidatePlay* _pValidatePlay;
+	// This will go into game specific sub classes for a3
     Singles singlesStrategy;
     Pairs pairsStrategy;
     Triples triplesStrategy;
@@ -30,10 +31,10 @@ public:
     virtual std::string getName();
     virtual bool isHuman();
     void setPlayable(IValidatePlay& strategy);
-    virtual bool isPlayable(Hand selection, Hand topPile);
+    virtual bool isPlayable(Hand& selection, Hand& topPile);
     virtual bool makeSelection(int playLimit);
     virtual void clearSelection();
-    virtual bool isValid(Hand selection);
+    virtual bool isValid(Hand& selection);
     virtual bool play(Pile& playPile);
     Hand& getHand();
     Hand& getSelection();

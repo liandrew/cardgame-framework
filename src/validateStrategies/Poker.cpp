@@ -82,44 +82,41 @@ PokerHand Poker::isPokerValid(Hand& selection){
 }
 
 bool Poker::isPlayable(Hand& selection, Hand& topPile){
-	bool result = false;
-	PokerHand myPokerValue;
-	PokerHand pilePokerValue;
-
-	myPokerValue = isPokerValid(selection);
-	pilePokerValue = isPokerValid(topPile);
+	PokerHand myPokerValue = isPokerValid(selection);
+	PokerHand pilePokerValue = isPokerValid(topPile);
 
 	std::cout << "My poker value = " << myPokerValue << std::endl;
 	std::cout << "My pile poker value = " << pilePokerValue << std::endl;
 
-	if(myPokerValue > pilePokerValue){
-		return true;
-	}else if(myPokerValue == pilePokerValue){
+	if(myPokerValue == pilePokerValue){
 		switch (myPokerValue) {
 			case STRAIGHTFLUSH:
-				std::cout << "straight flush" << std::endl;
+				std::cout << "straight flush strategy" << std::endl;
 				setPokerPlayable(_straightFlushStrategy);
 				break;
 			case FOUROFAKIND:
-				std::cout << "four of a kind" << std::endl;
+				std::cout << "four of a kind strategy" << std::endl;
 				setPokerPlayable(_fourOfAKindStrategy);
 				break;
 			case FULLHOUSE:
-				std::cout << "full house" << std::endl;
+				std::cout << "full house strategy" << std::endl;
 				setPokerPlayable(_fullhouseStrategy);
 				break;
 			case FLUSH:
-				std::cout << "flush" << std::endl;
+				std::cout << "flush strategy" << std::endl;
 				setPokerPlayable(_straightFlushStrategy);
 				break;
 			case STRAIGHT:
-				std::cout << "straight flush" << std::endl;
+				std::cout << "straight flush strategy" << std::endl;
 				setPokerPlayable(_straightStrategy);
 				break;
+			default:
+				std::cout << "invalid poker move" << std::endl;
+				return false;
 		}
-		result = isPokerPlayable(selection,topPile);
+		return isPokerPlayable(selection,topPile);
 	}
-	return result;
+	return (myPokerValue > pilePokerValue) && (selection.size() == topPile.size());
 }
 
 bool Poker::isValid(Hand& selection){
