@@ -116,7 +116,7 @@ bool Poker::isPlayable(Hand& selection, Hand& topPile){
 		}
 		return isPokerPlayable(selection,topPile);
 	}
-	return (myPokerValue > pilePokerValue) && (selection.size() == topPile.size());
+	return (myPokerValue > pilePokerValue) && ((selection.size() == topPile.size() || topPile.size() == '\0'));
 }
 
 bool Poker::isValid(Hand& selection){
