@@ -5,7 +5,7 @@
 #include <iostream>
 #include "../../include/PokerStrategies/FullHouse.h"
 
-bool FullHouse::isPokerPlayable(Hand selection, Hand topPile){
+bool FullHouse::isPokerPlayable(Hand& selection, Hand& topPile){
 	if(topPile.size() == '\0'){
 		return true;
 	}else if(topPile.size() != 5){

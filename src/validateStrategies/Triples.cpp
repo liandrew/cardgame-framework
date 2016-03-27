@@ -4,7 +4,7 @@
 
 #include "../../include/ValidateStrategies/Triples.h"
 
-bool Triples::isPlayable(Hand selection, Hand topPile){
+bool Triples::isPlayable(Hand& selection, Hand& topPile){
 	if(isValid(selection)) {
 		if(topPile.size()=='\0'){
 			return true;
@@ -22,7 +22,7 @@ bool Triples::isPlayable(Hand selection, Hand topPile){
 	return false;
 }
 
-bool Triples::isValid(Hand selection){
+bool Triples::isValid(Hand& selection){
 	if((selection.size() != '\0') && (selection.size()==3)){
 		if((selection.getCard(0)->getRank() == selection.getCard(1)->getRank())
 		   && selection.getCard(1)->getRank() == selection.getCard(2)->getRank()){

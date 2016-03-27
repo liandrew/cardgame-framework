@@ -4,7 +4,7 @@
 
 #include "../../include/ValidateStrategies/Singles.h"
 
-bool Singles::isPlayable(Hand selection, Hand topPile){
+bool Singles::isPlayable(Hand& selection, Hand& topPile){
     if(isValid(selection)){
         if(topPile.size() == '\0'){
             return true;
@@ -29,6 +29,6 @@ bool Singles::isPlayable(Hand selection, Hand topPile){
     return false;
 }
 
-bool Singles::isValid(Hand selection){
+bool Singles::isValid(Hand& selection){
     return ((selection.size() != '\0') && (selection.size()==1));
 }

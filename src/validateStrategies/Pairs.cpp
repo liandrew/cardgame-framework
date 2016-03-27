@@ -4,7 +4,7 @@
 
 #include "../../include/ValidateStrategies/Pairs.h"
 
-bool Pairs::isPlayable(Hand selection, Hand topPile){
+bool Pairs::isPlayable(Hand& selection, Hand& topPile){
 	if(isValid(selection)){
 		if(topPile.size()=='\0'){
 			return true;
@@ -30,7 +30,7 @@ bool Pairs::isPlayable(Hand selection, Hand topPile){
 	return false;
 }
 
-bool Pairs::isValid(Hand selection){
+bool Pairs::isValid(Hand& selection){
 	if((selection.size() != '\0') && (selection.size()==2)){
 		if(selection.getCard(0)->getRank() == selection.getCard(1)->getRank()){
 			return true;

@@ -4,7 +4,7 @@
 
 #include "../../include/PokerStrategies/Straight.h"
 
-bool Straight::isPokerPlayable(Hand selection, Hand topPile){
+bool Straight::isPokerPlayable(Hand& selection, Hand& topPile){
 	if(topPile.size() == '\0'){
 		return true;
 	}else if(topPile.size() != 5){

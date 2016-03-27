@@ -4,7 +4,7 @@
 
 #include "../../include/PokerStrategies/Flush.h"
 
-bool Flush::isPokerPlayable(Hand selection, Hand topPile){
+bool Flush::isPokerPlayable(Hand& selection, Hand& topPile){
 	if(topPile.size() == '\0'){
 		return true;
 	}else if(topPile.size() != 5){

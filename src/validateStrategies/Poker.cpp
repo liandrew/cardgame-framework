@@ -10,11 +10,11 @@ void Poker::setPokerPlayable(IPokerValidatePlay &strategy) {
 	_pValidatePokerPlay = &strategy;
 }
 
-bool Poker::isPokerPlayable(Hand selection, Hand topPile){
+bool Poker::isPokerPlayable(Hand& selection, Hand& topPile){
 	return _pValidatePokerPlay->isPokerPlayable(selection, topPile);
 }
 
-PokerHand Poker::isPokerValid(Hand selection){
+PokerHand Poker::isPokerValid(Hand& selection){
 	if(selection.size()!='\0' && selection.size()==5){
 		// start analyzing
 		bool isHandOrdered = true;
@@ -81,7 +81,7 @@ PokerHand Poker::isPokerValid(Hand selection){
 	return INVALID;
 }
 
-bool Poker::isPlayable(Hand selection, Hand topPile){
+bool Poker::isPlayable(Hand& selection, Hand& topPile){
 	bool result = false;
 	PokerHand myPokerValue;
 	PokerHand pilePokerValue;
@@ -122,6 +122,6 @@ bool Poker::isPlayable(Hand selection, Hand topPile){
 	return result;
 }
 
-bool Poker::isValid(Hand selection){
+bool Poker::isValid(Hand& selection){
 	return (isPokerValid(selection) != INVALID);
 }

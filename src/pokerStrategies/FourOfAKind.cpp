@@ -4,7 +4,7 @@
 
 #include "../../include/PokerStrategies/FourOfAKind.h"
 
-bool FourOfAKind::isPokerPlayable(Hand selection, Hand topPile){
+bool FourOfAKind::isPokerPlayable(Hand& selection, Hand& topPile){
 	if(topPile.size() == '\0'){
 		return true;
 	}else if(topPile.size() != 5){
