@@ -1,6 +1,4 @@
 #include "../include/TestGame.h"
-#include "../include/validateStrategies/Singles.h"
-
 #include <iostream>
 
 using namespace std;

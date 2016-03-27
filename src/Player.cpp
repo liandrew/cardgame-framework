@@ -3,7 +3,7 @@
 //
 
 #include "../include/Player.h"
-#include "../include/validateStrategies/Singles.h"
+#include "../include/validateStrategies/BigTwo_Singles.h"
 
 Player::Player(std::string name) : _hand(nullptr), _selection(nullptr) {
     _name = name;

@@ -8,7 +8,7 @@
 #include "../IValidatePlay.h"
 #include "../Hand.h"
 
-class Pairs : public IValidatePlay {
+class BigTwo_Pairs : public IValidatePlay {
 public:
     bool isPlayable(Hand& selection, Hand& topPile);
     bool isValid(Hand& selection);

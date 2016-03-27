@@ -2,9 +2,9 @@
 // Created by Andrew on 2016-03-24.
 //
 
-#include "../../include/ValidateStrategies/Pairs.h"
+#include "../../include/ValidateStrategies/BigTwo_Pairs.h"
 
-bool Pairs::isPlayable(Hand& selection, Hand& topPile){
+bool BigTwo_Pairs::isPlayable(Hand& selection, Hand& topPile){
 	if(isValid(selection)){
 		if(topPile.size()=='\0'){
 			return true;
@@ -30,7 +30,7 @@ bool Pairs::isPlayable(Hand& selection, Hand& topPile){
 	return false;
 }
 
-bool Pairs::isValid(Hand& selection){
+bool BigTwo_Pairs::isValid(Hand& selection){
 	if((selection.size() != '\0') && (selection.size()==2)){
 		if(selection.getCard(0)->getRank() == selection.getCard(1)->getRank()){
 			return true;

@@ -2,9 +2,9 @@
 // Created by Andrew on 2016-03-24.
 //
 
-#include "../../include/ValidateStrategies/Triples.h"
+#include "../../include/ValidateStrategies/BigTwo_Triples.h"
 
-bool Triples::isPlayable(Hand& selection, Hand& topPile){
+bool BigTwo_Triples::isPlayable(Hand& selection, Hand& topPile){
 	if(isValid(selection)) {
 		if(topPile.size()=='\0'){
 			return true;
@@ -22,7 +22,7 @@ bool Triples::isPlayable(Hand& selection, Hand& topPile){
 	return false;
 }
 
-bool Triples::isValid(Hand& selection){
+bool BigTwo_Triples::isValid(Hand& selection){
 	if((selection.size() != '\0') && (selection.size()==3)){
 		if((selection.getCard(0)->getRank() == selection.getCard(1)->getRank())
 		   && selection.getCard(1)->getRank() == selection.getCard(2)->getRank()){
