@@ -13,7 +13,7 @@ g++ src/Player.cpp src/CardCollection.cpp src/Card.cpp src/Hand.cpp src/Pile.cpp
 ### BigTwo class diagram
 ![BigTwo UML](/docs/bigTwo_class_diagram.png?raw=true "BigTwo")
 
-### Card Game Framework UML"
+### Card Game Framework UML
 ![Card Game Framework UML](/docs/game_class_diagram.png?raw=true "Card Game Framework")
 
 ### Design Princples used
@@ -58,11 +58,61 @@ g++ src/Player.cpp src/CardCollection.cpp src/Card.cpp src/Hand.cpp src/Pile.cpp
     relationships where one thing is-a type of another thing. For everything else, where relations are has-a, we
     used object composition. In our design Player contains Hand and Score while Game contains the Pile, Players and Deck.
     Similar to inheritance, composition gives the ability to use behaviors from other classes. For example, since Player
-    contains Hand it can now use the Hand object to call functions that it would not otherwise have such as findLargest card.
+    contains Hand, Player can now use the Hand object to call functions that it would not otherwise have such as findLargest card.
 
 ### Design patterns used
 
 1.  Abstract Factory
+
+    In our game framework, we use abstract factory to create common game parts. Common parts
+    that can be created via the factory are Cards, Players and Piles. Following the structure in
+    the Gang of Four book, the classes used in our framework include:
+
+    ![Abstract Factory Structure](/docs/AbstractFactoryStructure.png?raw=true "Abstract Factory Structure")
+
+    Abstract Factory ~= PartsFactory
+    Concrete Factory A ~= BigTwoParts
+    Concrete Factory B ~= CrazyEightParts
+
+    Product A ~= Card
+    Product A1 ~= BigTwoCard
+    Product A2 ~= CrazyEightCard
+    Product B ~= Player
+    Product B1 ~= BigTwoPlayer
+    Product B2 ~= CrazyEightPlayer
+    Product C ~= Pile
+    Product C1 ~= BigTwoPile
+    Product C2 ~= CrazyEightPile
+
+    Client ~= Game
+
+    Using abstract factory, we can abstract away the implementation details of creating our concrete products.
+    The factory subclasses such as BigTwoParts and CrazyEightsParts define their own implementation on
+    how the products are created. Since the parts share a common supertype called PartsFactory, we can use
+    polymorphism in our client code to simplify our code.  For example, in our BigTwoGame we can write the following
+    client code
+
+    ```
+    PartsFactory* gameParts = new BigTwoParts();
+    Player* player = gameParts.makePlayer();
+    Pile* pile = gameParts.makePile();
+    Card* card = gameParts.makeCard();
+    ```
+
+    Similarily, in our CrazyEightGame we can write
+
+    ```
+    PartsFactory* gameParts = new CrazyEightParts();
+    Player* player = gameParts.makePlayer();
+    Pile* pile = gameParts.makePile();
+    Card* card = gameParts.makeCard();
+    ```
+
+    Because we used an abstract factory, it is easy to add new game parts and use it in our client code.
+    To add new game parts,  all we need to do is derive a subclass from abstract PartsFactory and implement the concrete factory
+    classes to define how it will create our objects. Then in the client code we can simply use it like in the above
+    examples. One slight drawback to using abstract factory is if a change to the interface is needed then
+    every subclass must be updated to reflect the change.
 
 2.  Template Method
 
