@@ -70,21 +70,21 @@ g++ src/Player.cpp src/CardCollection.cpp src/Card.cpp src/Hand.cpp src/Pile.cpp
 
     ![Abstract Factory Structure](/docs/AbstractFactoryStructure.png?raw=true "Abstract Factory Structure")
 
-    Abstract Factory ~= PartsFactory
-    Concrete Factory A ~= BigTwoParts
-    Concrete Factory B ~= CrazyEightParts
+    * Abstract Factory ~= PartsFactory
+    * Concrete Factory A ~= BigTwoParts
+    * Concrete Factory B ~= CrazyEightParts
 
-    Product A ~= Card
-    Product A1 ~= BigTwoCard
-    Product A2 ~= CrazyEightCard
-    Product B ~= Player
-    Product B1 ~= BigTwoPlayer
-    Product B2 ~= CrazyEightPlayer
-    Product C ~= Pile
-    Product C1 ~= BigTwoPile
-    Product C2 ~= CrazyEightPile
+    * Product A ~= Card
+    * Product A1 ~= BigTwoCard
+    * Product A2 ~= CrazyEightCard
+    * Product B ~= Player
+    * Product B1 ~= BigTwoPlayer
+    * Product B2 ~= CrazyEightPlayer
+    * Product C ~= Pile
+    * Product C1 ~= BigTwoPile
+    * Product C2 ~= CrazyEightPile
 
-    Client ~= Game
+    * Client ~= Game
 
     Using abstract factory, we can abstract away the implementation details of creating our concrete products.
     The factory subclasses such as BigTwoParts and CrazyEightsParts define their own implementation on
