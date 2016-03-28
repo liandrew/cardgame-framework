@@ -23,13 +23,13 @@ private:
     FourOfAKind _fourOfAKindStrategy;
     FullHouse _fullhouseStrategy;
     Straight _straightStrategy;
-    int getPokerHandIndex();
 public:
     void setPokerPlayable(IPokerValidatePlay& strategy);
-    bool isPokerPlayable(Hand selection, Hand topPile);
-    PokerHand isPokerValid(Hand selection);
-    bool isPlayable(Hand selection, Hand topPile);
-    bool isValid(Hand selection);
+    bool isPokerPlayable(Hand& selection, Hand& topPile);
+    PokerHand isPokerValid(Hand& selection);
+	 //Checks if selected hand can be played against the top pile hand
+    bool isPlayable(Hand& selection, Hand& topPile);
+    bool isValid(Hand& selection);
 };
 
 #endif //CARD_GAME_FRAMEWORK_POKER_H

@@ -2,9 +2,9 @@
 // Created by Andrew on 2016-03-24.
 //
 
-#include "../../include/ValidateStrategies/Singles.h"
+#include "../../include/ValidateStrategies/BigTwo_Singles.h"
 
-bool Singles::isPlayable(Hand selection, Hand topPile){
+bool BigTwo_Singles::isPlayable(Hand& selection, Hand& topPile){
     if(isValid(selection)){
         if(topPile.size() == '\0'){
             return true;
@@ -29,6 +29,6 @@ bool Singles::isPlayable(Hand selection, Hand topPile){
     return false;
 }
 
-bool Singles::isValid(Hand selection){
+bool BigTwo_Singles::isValid(Hand& selection){
     return ((selection.size() != '\0') && (selection.size()==1));
 }

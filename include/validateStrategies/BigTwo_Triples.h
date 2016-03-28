@@ -8,10 +8,10 @@
 #include "../IValidatePlay.h"
 #include "../Hand.h"
 
-class Triples : public IValidatePlay {
+class BigTwo_Triples : public IValidatePlay {
 public:
-    bool isPlayable(Hand selection, Hand topPile);
-    bool isValid(Hand selection);
+    bool isPlayable(Hand& selection, Hand& topPile);
+    bool isValid(Hand& selection);
 };
 
 #endif //CARD_GAME_FRAMEWORK_TRIPLES_H

@@ -11,8 +11,8 @@ class PartsFactory {
 public:
    virtual Player makePlayer() = 0;
    virtual Player makeCPUPlayer() = 0;
-   virtual Player makePile() = 0;
-   virtual Player makeCard() = 0;
+   virtual Pile makePile() = 0;
+   virtual Card makeCard() = 0;
 };
 
 #endif //CARD_GAME_FRAMEWORK_PARTSFACTORY_H

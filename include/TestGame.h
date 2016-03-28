@@ -4,11 +4,18 @@
 #include "Game.h"
 #include "Pile.h"
 
+class SolitaireFactory : public PartsFactory {
+    Player makePlayer() ;
+    Player makeCPUPlayer() {};
+    Pile makePile();
+    Card makeCard() {}
+};
+
 class TestPlayer : public Player {
 public:
 	TestPlayer(std::string name);
 	bool isHuman() { return true; }
-	bool play(Hand selection, Hand playPile);
+	bool play(Pile& playPile);
 };
 
 class TestGame : public Game {

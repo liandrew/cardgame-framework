@@ -3,7 +3,7 @@
 //
 
 #include "../include/Player.h"
-#include "../include/validateStrategies/Singles.h"
+#include "../include/validateStrategies/BigTwo_Singles.h"
 
 Player::Player(std::string name) : _hand(nullptr), _selection(nullptr) {
     _name = name;
@@ -23,11 +23,11 @@ void Player::setPlayable(IValidatePlay& strategy){
     _pValidatePlay = &strategy;
 }
 
-bool Player::isPlayable(Hand selection, Hand topPile){
+bool Player::isPlayable(Hand& selection, Hand& topPile){
 	return _pValidatePlay->isPlayable(selection, topPile);
 }
 
-bool Player::isValid(Hand selection) {
+bool Player::isValid(Hand& selection) {
     return  _pValidatePlay->isValid(selection);
 }
 
@@ -50,25 +50,25 @@ bool Player::makeSelection(int playLimit){
     }
     switch(_selection->size()){
         case 1:
-            std::cout << "singles strat" << std::endl;
+            std::cout << "singles strategy" << std::endl;
             setPlayable(singlesStrategy);
             break;
         case 2:
-            std::cout << "pairs strat" << std::endl;
+            std::cout << "pairs strategy" << std::endl;
             setPlayable(pairsStrategy);
             break;
         case 3:
-            std::cout << "triples strat" << std::endl;
+            std::cout << "triples strategy" << std::endl;
             setPlayable(triplesStrategy);
             break;
         case 5:
-            std::cout << "poker strat" << std::endl;
+            std::cout << "poker strategy" << std::endl;
             setPlayable(pokerStrategy);
             break;
         default:
-            std::cout << "defaulting to singles strat" << std::endl;
+            std::cout << "selection is invalid" << std::endl;
             setPlayable(singlesStrategy);
-            break;
+            return false;
     }
 	return isValid(*_selection);
 }

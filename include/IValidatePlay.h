@@ -9,8 +9,8 @@
 
 class IValidatePlay {
 public:
-    virtual bool isPlayable(Hand selection, Hand topPile) = 0;
-    virtual bool isValid(Hand selection) = 0;
+    virtual bool isPlayable(Hand& selection, Hand& topPile) = 0;
+    virtual bool isValid(Hand& selection) = 0;
 };
 
 #endif //CARD_GAME_FRAMEWORK_IVALIDATEPLAY_H

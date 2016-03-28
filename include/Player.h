@@ -9,18 +9,19 @@
 #include "Hand.h"
 #include "Pile.h"
 #include "IValidatePlay.h"
-#include "validateStrategies/Singles.h"
-#include "validateStrategies/Pairs.h"
-#include "validateStrategies/Triples.h"
+#include "validateStrategies/BigTwo_Singles.h"
+#include "validateStrategies/BigTwo_Pairs.h"
+#include "validateStrategies/BigTwo_Triples.h"
 #include "validateStrategies/Poker.h"
 
 class Player {
 private:
     std::string _name;
     IValidatePlay* _pValidatePlay;
-    Singles singlesStrategy;
-    Pairs pairsStrategy;
-    Triples triplesStrategy;
+	// This will go into game specific sub classes for a3, for now it is here for testing purposes
+    BigTwo_Singles singlesStrategy;
+    BigTwo_Pairs pairsStrategy;
+    BigTwo_Triples triplesStrategy;
     Poker pokerStrategy;
 protected:
     Hand* _hand = NULL;
@@ -30,10 +31,10 @@ public:
     virtual std::string getName();
     virtual bool isHuman();
     void setPlayable(IValidatePlay& strategy);
-    virtual bool isPlayable(Hand selection, Hand topPile);
+    virtual bool isPlayable(Hand& selection, Hand& topPile);
     virtual bool makeSelection(int playLimit);
     virtual void clearSelection();
-    virtual bool isValid(Hand selection);
+    virtual bool isValid(Hand& selection);
     virtual bool play(Pile& playPile);
     Hand& getHand();
     Hand& getSelection();

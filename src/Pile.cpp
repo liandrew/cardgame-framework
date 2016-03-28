@@ -17,7 +17,7 @@ std::vector<Hand> Pile::getPile(){
 	return _vPile;
 }
 
-Hand Pile::getTopHand(){
+Hand& Pile::getTopHand(){
 	return _vPile.back();
 }
 

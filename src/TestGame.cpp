@@ -1,6 +1,4 @@
 #include "../include/TestGame.h"
-#include "../include/validateStrategies/Singles.h"
-
 #include <iostream>
 
 using namespace std;
@@ -80,10 +78,10 @@ void TestGame::playerAction(Player& player) {
 
 TestPlayer::TestPlayer(std::string name) : Player(name) { }
 
-bool TestPlayer::play(Hand selection, Hand playPile) {
+bool TestPlayer::play(Pile& playPile) {
 	Card* card = _hand->getCard(0);
-	_hand->transfer(playPile, 0);
-	cout << "Transfered " << card->toFullString() << " to " << playPile.getType() << endl;
+	_hand->transfer(playPile.getTopHand(), 0);
+	cout << "Transfered " << card->toFullString() << " to " << playPile.toString() << endl;
 	return true;
 }
 
