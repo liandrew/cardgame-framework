@@ -3,6 +3,7 @@
 //
 
 #include "../../include/ValidateStrategies/Pairs.h"
+#include <algorithm>
 
 bool Pairs::isPlayable(Hand selection, Hand topPile){
 	if(isValid(selection)){
