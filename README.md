@@ -247,3 +247,9 @@ g++ src/Player.cpp src/CardCollection.cpp src/Card.cpp src/Hand.cpp src/Pile.cpp
     It does not care whether it is a poker hand or single hand.  It does not need to know since the strategy handles all
     runtime specific changes according to the hand size and delegates to the appropriate strategy or to another family of strategies -
     in the case of a poker hand.
+
+### Framework usage demo
+
+The classes and interfaces for a third game was implemented to test our framework in TestGame.cpp
+
+[TestGame.cpp](/src/TestGame.cpp)
