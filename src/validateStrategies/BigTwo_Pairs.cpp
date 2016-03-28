@@ -2,7 +2,6 @@
 // Created by Andrew on 2016-03-24.
 //
 
-#include "../../include/ValidateStrategies/Pairs.h"
 #include "../../include/ValidateStrategies/BigTwo_Pairs.h"
 #include <algorithm>
 

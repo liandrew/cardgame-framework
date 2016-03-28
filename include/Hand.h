@@ -10,6 +10,8 @@
 
 class Hand : public CardCollection {
 public:
+    bool concealTurned;
+
     Hand(const std::string &type);
     void sort();
     Card* findLargerThan(Card* card);

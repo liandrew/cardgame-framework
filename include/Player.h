@@ -35,7 +35,7 @@ public:
     virtual bool makeSelection(int playLimit);
     virtual void clearSelection();
     virtual bool isValid(Hand& selection);
-    virtual bool play(Pile& playPile);
+    virtual bool play(Pile& playPile, int handIndex = -1);
     Hand& getHand();
     Hand& getSelection();
     virtual ~Player();

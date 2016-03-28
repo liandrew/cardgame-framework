@@ -73,7 +73,7 @@ bool Player::makeSelection(int playLimit){
 	return isValid(*_selection);
 }
 
-bool Player::play(Pile &playPile) {
+bool Player::play(Pile &playPile, int handIndex) {
     playPile.setTopHand(*_selection);
     // commit play by removing selection from hand
     _hand->removeFromCardCollection(*_selection);

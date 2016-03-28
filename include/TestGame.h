@@ -4,24 +4,28 @@
 #include "Game.h"
 #include "Pile.h"
 
-class SolitaireFactory : public PartsFactory {
-    Player makePlayer() ;
-    Player makeCPUPlayer() {};
-    Pile makePile();
-    Card makeCard() {}
+class SolitairePlayer : public Player {
+public:
+    SolitairePlayer(std::string name);
+    bool isHuman() { return true; }
+    bool play(Pile& playPile, int handIndex = -1);
+    bool makeSelection(int playLimit);
+    bool isPlayable(Hand& selection, Hand& topPile);
 };
 
-class TestPlayer : public Player {
-public:
-	TestPlayer(std::string name);
-	bool isHuman() { return true; }
-	bool play(Pile& playPile);
+class SolitaireFactory : public PartsFactory {
+    Player* makePlayer(std::string name);
+    Player* makeCPUPlayer(std::string name) { return nullptr; };
+    Pile* makePile();
 };
 
 class TestGame : public Game {
 private:
 	Pile* _pile = NULL;
 	Player* _winningPlayer;
+    PartsFactory* _factory;
+    int _tableauSize;
+    int _pileSelection;
 public: 
 	TestGame();
 

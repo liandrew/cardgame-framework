@@ -9,10 +9,9 @@
 
 class PartsFactory {
 public:
-   virtual Player makePlayer() = 0;
-   virtual Player makeCPUPlayer() = 0;
-   virtual Pile makePile() = 0;
-   virtual Card makeCard() = 0;
+   virtual Player* makePlayer(std::string name) = 0;
+   virtual Player* makeCPUPlayer(std::string name) = 0;
+   virtual Pile* makePile() = 0;
 };
 
 #endif //CARD_GAME_FRAMEWORK_PARTSFACTORY_H

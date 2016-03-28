@@ -6,7 +6,9 @@
 #include "../include/CardCollection.h"
 #include "../include/Hand.h"
 
-Hand::Hand(const std::string &type) : CardCollection(type){}
+Hand::Hand(const std::string &type) : CardCollection(type){
+    concealTurned = true;
+}
 
 void Hand::sort(){
 	int n = this->size();
@@ -65,8 +67,12 @@ Card* Hand::findLargest(){
 std::string Hand::toString(){
 	std::string handStr = "";
 	for (unsigned int i = 0; i < _vCards.size(); ++i) {
-		handStr += _vCards[i]->toString();
-		if (i < _vCards.size() - 1) handStr += " ";
+        if (concealTurned && _vCards[i]->getTurned()) {
+            handStr += "[ * ]";
+        } else {
+            handStr += _vCards[i]->toString();
+        }
+        if (i < _vCards.size() - 1) handStr += " ";
 	}
 	return handStr;
 }

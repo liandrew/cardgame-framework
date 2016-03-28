@@ -21,6 +21,14 @@ Hand& Pile::getTopHand(){
 	return _vPile.back();
 }
 
+Hand & Pile::get(int i) {
+    return _vPile[i];
+}
+
+Hand & Pile::operator[](int i) {
+    return _vPile[i];
+}
+
 void Pile::setTopHand(Hand play){
 	_vPile.push_back(play);
 }
