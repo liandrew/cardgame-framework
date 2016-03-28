@@ -67,6 +67,7 @@ bool Player::makeSelection(int playLimit){
             break;
         default:
             std::cout << "selection is invalid" << std::endl;
+            setPlayable(singlesStrategy);
             return false;
     }
 	return isValid(*_selection);
