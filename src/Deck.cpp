@@ -16,6 +16,13 @@ Deck::Deck(const std::string &type) : CardCollection(type){
             addCard(new Card(rank,(Suite)suite));
         }
     }
+    _vOriginal = _vCards;
+}
+
+Deck::~Deck() {
+    for (int i = _vOriginal.size() - 1; i >= 0; --i) {
+        delete _vOriginal[i];
+    }
 }
 
 void Deck::deal(CardCollection &hand, int handSize){

@@ -85,12 +85,15 @@ void TestGame::playerAction(Player& player) {
 	do{
         Hand* currentHand = nullptr;
         if (player.getHand().size()) {
-            cout << "Choose a tableau (1-7). Or d to Draw again" << endl;
+            cout << "Choose a tableau (1-7). Or d to Draw again. or q to quit." << endl;
         } else {
-            cout << "Choose d to draw a card." << endl;
+            cout << "Choose d to draw a card, or q to quit." << endl;
         }
         cin >> choice;
-        if (choice == "d") {
+        if (choice == "q") {
+            _isActive = false;
+            isPlayable = true;
+        } else if (choice == "d") {
             _deck->deal(_vPlayers[0]->getHand(), 1);
             cout << "Top card: " << player.getHand().top()->toString() << endl;
         } else if (player.getHand().size()) {

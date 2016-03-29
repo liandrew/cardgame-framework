@@ -93,3 +93,9 @@ Player& Game::getCurrentPlayer() {
 int Game::getTurn() {
 	return _vPlayers.size() ? _gameTurn / _vPlayers.size() : 0;
 }
+
+Game::~Game() {
+    if (_deck) {
+        delete _deck;
+    }
+}

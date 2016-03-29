@@ -8,7 +8,10 @@
 #include "CardCollection.h"
 
 class Deck : public CardCollection {
+private:
+    std::vector<Card*> _vOriginal;
 public:
+    virtual ~Deck();
     Deck(const std::string &type);
     void deal(CardCollection &hand, int handSize);
     void shuffle();

@@ -13,7 +13,6 @@ class Game {
 private:
     std::string _name;
     std::string _description;
-	bool _isActive;
     int _playLimit;
     int _handLimit;
     int _maxPlayers;
@@ -23,8 +22,10 @@ private:
 protected:
     std::vector<Player*> _vPlayers;
     Deck* _deck = NULL;
+    bool _isActive;
 public:
     Game(std::string name);
+    virtual ~Game();
 
     void createGame(); // template method
 
@@ -50,16 +51,10 @@ public:
 	virtual void playerAction(Player& player) = 0;
 	virtual void createPlayers() = 0;
     virtual void dealCards() = 0; // deal cards for solitary game has different behavior
-    virtual bool isWinner(Player &player) = 0;
+    virtual bool isWinner(Player& player) = 0;
     virtual void setWinCondition() = 0;
     virtual Player& getCurrentPlayer();
 	int getTurn();
-
-    ~Game(){
-        if(_deck){
-            delete _deck;
-        }
-    };
 };
 
 #endif //CARD_GAME_FRAMEWORK_GAME_H
