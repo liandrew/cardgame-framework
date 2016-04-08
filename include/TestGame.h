@@ -9,7 +9,7 @@ public:
     SolitairePlayer(std::string name);
     bool isHuman() { return true; }
     bool play(Pile& playPile, int handIndex = -1);
-    bool makeSelection(int playLimit);
+    bool makeSelection(int playLimit, Hand& topPile);
     bool isPlayable(Hand& selection, Hand& topPile);
 };
 

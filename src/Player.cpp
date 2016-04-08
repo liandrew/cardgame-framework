@@ -31,7 +31,7 @@ bool Player::isValid(Hand& selection) {
     return  _pValidatePlay->isValid(selection);
 }
 
-bool Player::makeSelection(int playLimit){
+bool Player::makeSelection(int playLimit, Hand& topPile){
     std::string selection;
     int limit = 1;
     std::cout << getName() << " make your selection: (p=pass, d=done)" << std::endl;
