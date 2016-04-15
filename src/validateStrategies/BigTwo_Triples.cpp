@@ -4,16 +4,17 @@
 
 #include "../../include/ValidateStrategies/BigTwo_Triples.h"
 
-bool BigTwo_Triples::isPlayable(Hand& selection, Hand& topPile){
+bool BigTwo_Triples::isPlayable(Hand& selection, Pile& playPile){
+	Hand topHand = playPile.getTopHand();
 	if(isValid(selection)) {
-		if(topPile.size()=='\0'){
+		if(topHand.size() == '\0' || topHand.size() == 0){
 			return true;
-		}else if(topPile.size() != 3){
+		}else if(topHand.size() != 3){
 			return false;
 		}
 
 		int myRank = selection.getCard(0)->getRank();
-        int topRank = topPile.getCard(0)->getRank();
+        int topRank = topHand.getCard(0)->getRank();
 
 		if (myRank > topRank) {
 			return true;

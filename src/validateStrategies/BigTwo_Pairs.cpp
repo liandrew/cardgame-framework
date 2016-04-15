@@ -3,22 +3,24 @@
 //
 
 #include "../../include/ValidateStrategies/BigTwo_Pairs.h"
+#include "../../include/Pile.h"
 #include <algorithm>
 
-bool BigTwo_Pairs::isPlayable(Hand& selection, Hand& topPile){
+bool BigTwo_Pairs::isPlayable(Hand& selection, Pile& playPile){
+    Hand topHand = playPile.getTopHand();
 	if(isValid(selection)){
-		if(topPile.size()=='\0'){
+		if(topHand.size()=='\0'){
 			return true;
-		}else if(topPile.size() != 2){
+		}else if(topHand.size() != 2){
 			return false;
 		}
 		int myRank = selection.getCard(0)->getRank();
 		int mySuite = selection.getCard(0)->getSuite();
 		int mySuite_2 = selection.getCard(1)->getSuite();
 
-        int topRank = topPile.getCard(0)->getRank();
-        int topSuite = topPile.getCard(0)->getSuite();
-        int topSuite_2 = topPile.getCard(1)->getSuite();
+        int topRank = topHand.getCard(0)->getRank();
+        int topSuite = topHand.getCard(0)->getSuite();
+        int topSuite_2 = topHand.getCard(1)->getSuite();
 
 		if(myRank > topRank){
 			return true;

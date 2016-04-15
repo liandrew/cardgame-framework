@@ -5,10 +5,11 @@
 #include <iostream>
 #include "../../include/PokerStrategies/FullHouse.h"
 
-bool FullHouse::isPokerPlayable(Hand& selection, Hand& topPile){
-	if(topPile.size() == '\0'){
+bool FullHouse::isPokerPlayable(Hand& selection, Pile& playPile){
+	Hand topHand = playPile.getTopHand();
+	if(topHand.size() == '\0'){
 		return true;
-	}else if(topPile.size() != 5){
+	}else if(topHand.size() != 5){
 		return false;
 	}
 	// Highest three matching cards wins the pot
@@ -22,11 +23,11 @@ bool FullHouse::isPokerPlayable(Hand& selection, Hand& topPile){
 		myHighest=selection.getCard(4)->getRank();
 	}
 
-    if(topPile.getCard(0)->getRank()==topPile.getCard(1)->getRank() &&
-       topPile.getCard(1)->getRank()==topPile.getCard(2)->getRank()){
-        pileHighest=topPile.getCard(0)->getRank();
+    if(topHand.getCard(0)->getRank()==topHand.getCard(1)->getRank() &&
+            topHand.getCard(1)->getRank()==topHand.getCard(2)->getRank()){
+        pileHighest=topHand.getCard(0)->getRank();
     }else{
-        pileHighest=topPile.getCard(4)->getRank();
+        pileHighest=topHand.getCard(4)->getRank();
     }
 
 	return (myHighest > pileHighest);

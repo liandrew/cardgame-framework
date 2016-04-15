@@ -10,7 +10,7 @@ CardCollection::CardCollection(std::string type){
 }
 
 CardCollection::~CardCollection() {
-    //clear(); // commenting out for now since causing memory issues
+    clear();
 }
 
 void CardCollection::transfer(CardCollection& to, int index){

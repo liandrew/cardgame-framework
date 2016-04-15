@@ -7,10 +7,11 @@
 
 #include "../IValidatePlay.h"
 #include "../Hand.h"
+#include "../Pile.h"
 
 class BigTwo_Pairs : public IValidatePlay {
 public:
-    bool isPlayable(Hand& selection, Hand& topPile);
+    bool isPlayable(Hand& selection, Pile& topPile);
     bool isValid(Hand& selection);
 };
 

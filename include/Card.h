@@ -17,11 +17,11 @@ public:
     Suite getSuite();
 	bool getTurned();
 	void setTurned(bool turned);
-	std::string getRankStr();
-	std::string getSuiteStr();
-    std::string toString();
-	std::string toFullString();
-private:
+	virtual std::string getRankStr();
+	virtual std::string getSuiteStr();
+    virtual std::string toString();
+	virtual std::string toFullString();
+protected:
     int _rank;
     Suite _suite;
 	bool _turned;

@@ -10,7 +10,7 @@
 
 class BigTwo_Singles : public IValidatePlay {
 public:
-    bool isPlayable(Hand& selection, Hand& topPile);
+    bool isPlayable(Hand& selection, Pile& topPile);
     bool isValid(Hand& selection);
 };
 

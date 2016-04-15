@@ -42,13 +42,14 @@ public:
     void setName(std::string);
     std::string getName();
 
-    void shuffleDeck();
+    virtual void shuffleDeck();
 	bool isActive();
 	void setActive(bool active);
 
 	virtual void gameLoop();
 
 	virtual void playerAction(Player& player) = 0;
+	virtual void setRules() = 0;
 	virtual void createPlayers() = 0;
     virtual void dealCards() = 0; // deal cards for solitary game has different behavior
     virtual bool isWinner(Player& player) = 0;

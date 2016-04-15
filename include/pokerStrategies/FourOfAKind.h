@@ -7,10 +7,11 @@
 
 #include "../IPokerValidatePlay.h"
 #include "../Hand.h"
+#include "../Pile.h"
 
 class FourOfAKind : public IPokerValidatePlay {
 public:
-    bool isPokerPlayable(Hand& selection, Hand& topPile);
+    bool isPokerPlayable(Hand& selection, Pile& playPile);
 };
 
 #endif //CARD_GAME_FRAMEWORK_FOUROFAKIND_H

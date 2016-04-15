@@ -10,12 +10,12 @@ void Poker::setPokerPlayable(IPokerValidatePlay &strategy) {
 	_pValidatePokerPlay = &strategy;
 }
 
-bool Poker::isPokerPlayable(Hand& selection, Hand& topPile){
-	return _pValidatePokerPlay->isPokerPlayable(selection, topPile);
+bool Poker::isPokerPlayable(Hand& selection, Pile& playPile){
+	return _pValidatePokerPlay->isPokerPlayable(selection, playPile);
 }
 
 PokerHand Poker::isPokerValid(Hand& selection){
-	if(selection.size()!='\0' && selection.size()==5){
+	if(selection.size() != '\0' && selection.size() == 5){
 		// start analyzing
 		bool isHandOrdered = true;
 		bool areSuitesAllSame = true;
@@ -81,9 +81,10 @@ PokerHand Poker::isPokerValid(Hand& selection){
 	return INVALID;
 }
 
-bool Poker::isPlayable(Hand& selection, Hand& topPile){
+bool Poker::isPlayable(Hand& selection, Pile& playPile){
+	Hand topHand = playPile.getTopHand();
 	PokerHand myPokerValue = isPokerValid(selection);
-	PokerHand pilePokerValue = isPokerValid(topPile);
+	PokerHand pilePokerValue = isPokerValid(topHand);
 
 	std::cout << "My poker value = " << myPokerValue << std::endl;
 	std::cout << "My pile poker value = " << pilePokerValue << std::endl;
@@ -114,9 +115,9 @@ bool Poker::isPlayable(Hand& selection, Hand& topPile){
 				std::cout << "invalid poker move" << std::endl;
 				return false;
 		}
-		return isPokerPlayable(selection,topPile);
+		return isPokerPlayable(selection,playPile);
 	}
-	return (myPokerValue > pilePokerValue) && ((selection.size() == topPile.size() || topPile.size() == '\0'));
+	return (myPokerValue > pilePokerValue) && ((selection.size() == topHand.size() || topHand.size() == '\0' || topHand.size() == 0));
 }
 
 bool Poker::isValid(Hand& selection){
