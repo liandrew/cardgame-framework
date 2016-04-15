@@ -55,11 +55,11 @@ std::string CardStrings::getSuite(Suite suite) {
 
 std::string CardStrings::getShortSuite(Suite suite) {
   switch (suite) {
-  case HEARTS: return "H";
-  case DIAMONDS: return "D";
-  case SPADES: return "S";
-  case CLUBS: return "C";
-  default: return "Joker";
+    case HEARTS: return "H";
+    case DIAMONDS: return "D";
+    case SPADES: return "S";
+    case CLUBS: return "C";
+    default: return "Joker";
   }
 }
 

@@ -7,7 +7,7 @@
 
 bool FullHouse::isPokerPlayable(Hand& selection, Pile& playPile){
   Hand topHand = playPile.getTopHand();
-  if(topHand.size() == '\0'){
+  if(topHand.size() == '\0' || topHand.size() == 0){
     return true;
   }else if(topHand.size() != 5){
     return false;
@@ -17,7 +17,7 @@ bool FullHouse::isPokerPlayable(Hand& selection, Pile& playPile){
   int pileHighest=0;
 
   if(selection.getCard(0)->getRank()==selection.getCard(1)->getRank() &&
-     selection.getCard(1)->getRank()==selection.getCard(2)->getRank()){
+    selection.getCard(1)->getRank()==selection.getCard(2)->getRank()){
     myHighest=selection.getCard(0)->getRank();
   }else{
     myHighest=selection.getCard(4)->getRank();

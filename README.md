@@ -1,6 +1,24 @@
+# BigTwo Implementation using framework
+
+Changes made to framework post on the [team wiki](https://github.com/seneca-btp600/Team19/wiki/Framework-Changes-for-A3 "team wiki") 
+
+## Build Instructions for A3
+
+Used  `CLion IDE ` but you can compile using `g++ <file_names.cpp> -g `
+
+```
+g++ src/Player.cpp src/CardCollection.cpp src/Card.cpp src/Hand.cpp src/Pile.cpp src/Deck.cpp src/IValidatePlay.cpp src/validateStrategies/BigTwo_Singles.cpp src/validateStrategies/BigTwo_Pairs.cpp src/validateStrategies/BigTwo_Triples.cpp src/validateStrategies/Poker.cpp src/pokerStrategies/Straight.cpp src/pokerStrategies/Flush.cpp src/pokerStrategies/FullHouse.cpp src/pokerStrategies/FourOfAKind.cpp src/pokerStrategies/RoyalFlush.cpp src/pokerStrategies/StraightFlush.cpp src/PartsFactory.cpp src/Game.cpp src/Utility.cpp src/TestGame.cpp src/TestMain.cpp src/BigTwoParts.cpp src/BigTwoHumanPlayer.cpp src/BigTwoCPUPlayer.cpp src/BigTwoPile.cpp src/BigTwoCard.cpp src/BigTwoGame.cpp src/BigTwoDeck.cpp -g
+```
+
+## Notes
+
+* A human player can play against 3 computer players. 
+  
+---
+
 #  Card Game Framework
 
-## Build Instructions
+## Build Instructions for A2
 
 Used  `CLion IDE ` but you can compile using `g++ <file_names.cpp> -g `
 

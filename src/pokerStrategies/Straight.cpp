@@ -6,7 +6,7 @@
 
 bool Straight::isPokerPlayable(Hand& selection, Pile& playPile){
   Hand topHand = playPile.getTopHand();
-  if(topHand.size() == '\0'){
+  if(topHand.size() == '\0' || topHand.size() == 0){
     return true;
   }else if(topHand.size() != 5){
     return false;

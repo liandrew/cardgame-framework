@@ -6,11 +6,13 @@
 //
 
 #include "../include/TestGame.h"
+#include "../include/BigTwoGame.h"
 
 using namespace std;
 
 int main(int argc, char** argv) {
-  TestGame testing;
+//  TestGame testing;
+  BigTwoGame testing;
   testing.createGame();
   testing.gameLoop();
 

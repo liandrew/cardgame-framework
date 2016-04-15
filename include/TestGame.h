@@ -3,6 +3,7 @@
 
 #include "Game.h"
 #include "Pile.h"
+#include "BigTwoCard.h"
 
 class SolitairePlayer : public Player {
 public:

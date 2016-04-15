@@ -47,7 +47,6 @@ public:
   void setActive(bool active);
 
   virtual void gameLoop();
-
   virtual void playerAction(Player& player) = 0;
   virtual void setRules() = 0;
   virtual void createPlayers() = 0;

@@ -7,6 +7,7 @@
 #include <map>
 #include "../include/CardCollection.h"
 #include "../include/Deck.h"
+#include "../include/BigTwoCard.h"
 #include <cstdlib>
 
 Deck::Deck(const std::string &type) : CardCollection(type){ }

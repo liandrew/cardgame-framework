@@ -95,7 +95,4 @@ int Game::getTurn() {
 }
 
 Game::~Game() {
-  if (_deck) {
-    delete _deck;
-  }
 }
