@@ -32,7 +32,7 @@ public:
     virtual bool isHuman();
     void setPlayable(IValidatePlay& strategy);
     virtual bool isPlayable(Hand& selection, Hand& topPile);
-    virtual bool makeSelection(int playLimit);
+    virtual bool makeSelection(int playLimit, Hand& topPile);
     virtual void clearSelection();
     virtual bool isValid(Hand& selection);
     virtual bool play(Pile& playPile, int handIndex = -1);

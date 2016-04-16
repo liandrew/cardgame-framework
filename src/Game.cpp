@@ -32,9 +32,9 @@ void Game::setActive(bool active) {
 
 void Game::gameLoop() {
 	while (_isActive && _vPlayers.size()) {
-		_gameTurn++;
 		_playerTurn = _gameTurn % _vPlayers.size();
 		playerAction(*_vPlayers[_playerTurn]);
+        _gameTurn++;
 	}
 }
 

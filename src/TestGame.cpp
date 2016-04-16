@@ -103,7 +103,7 @@ void TestGame::playerAction(Player& player) {
                 currentHand = &_pile->get(_pileSelection);
             }
 
-            isValid = player.makeSelection(getMaxCardsPerPlay());
+            isValid = player.makeSelection(getMaxCardsPerPlay(), _pile->get(_pileSelection));
 
             isPlayable = player.isPlayable(player.getSelection(), _pile->get(_pileSelection));
 
@@ -157,7 +157,7 @@ Pile* SolitaireFactory::makePile() {
     return solitairePile;
 }
 
-bool SolitairePlayer::makeSelection(int playLimit) {
+bool SolitairePlayer::makeSelection(int playLimit, Hand& topPile) {
     _selection->removeAll();
     if (_hand->size()) {
         _selection->addCard(_hand->top());
