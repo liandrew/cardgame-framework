@@ -6,10 +6,11 @@
 #define CARD_GAME_FRAMEWORK_IVALIDATEPLAY_H
 
 #include "Hand.h"
+#include "Pile.h"
 
 class IValidatePlay {
 public:
-    virtual bool isPlayable(Hand& selection, Hand& topPile) = 0;
+    virtual bool isPlayable(Hand& selection, Pile& topPile) = 0;
     virtual bool isValid(Hand& selection) = 0;
 };
 

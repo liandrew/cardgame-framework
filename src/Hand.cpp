@@ -26,7 +26,7 @@ void Hand::sort(){
 
 Card* Hand::findLargerThan(Card* card){
 	int rank = card->getRank();
-	for (unsigned int i = _vCards.size() - 1; i >= 0; --i) {
+	for (int i = _vCards.size() - 1; i >= 0; --i) {
 		if (_vCards[i]->getRank() > rank) {
 			return _vCards[i];
 		}
@@ -36,7 +36,7 @@ Card* Hand::findLargerThan(Card* card){
 
 Card* Hand::findSmallerThan(Card* card){
 	int rank = card->getRank();
-	for (unsigned int i = _vCards.size() - 1; i >= 0; --i) {
+	for (int i = _vCards.size() - 1; i >= 0; --i) {
 		if (_vCards[i]->getRank() < rank) {
 			return _vCards[i];
 		}
@@ -46,7 +46,7 @@ Card* Hand::findSmallerThan(Card* card){
 
 Card* Hand::findSmallest(){
 	Card* smallest = nullptr;
-	for (unsigned int i = _vCards.size() - 1; i >= 0; --i) {
+	for (int i = _vCards.size() - 1; i >= 0; --i) {
 		if (!smallest || _vCards[i]->getRank() < smallest->getRank()) {
 			smallest = _vCards[i];
 		}
@@ -56,7 +56,7 @@ Card* Hand::findSmallest(){
 
 Card* Hand::findLargest(){
 	Card* largest = nullptr;
-	for (unsigned int i = _vCards.size() - 1; i >= 0; --i) {
+	for (int i = _vCards.size() - 1; i >= 0; --i) {
 		if (!largest || _vCards[i]->getRank() < largest->getRank()) {
 			largest = _vCards[i];
 		}

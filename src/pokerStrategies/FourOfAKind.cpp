@@ -4,10 +4,11 @@
 
 #include "../../include/PokerStrategies/FourOfAKind.h"
 
-bool FourOfAKind::isPokerPlayable(Hand& selection, Hand& topPile){
-	if(topPile.size() == '\0'){
+bool FourOfAKind::isPokerPlayable(Hand& selection, Pile& playPile){
+	Hand topHand = playPile.getTopHand();
+	if(topHand.size() == '\0'){
 		return true;
-	}else if(topPile.size() != 5){
+	}else if(topHand.size() != 5){
 		return false;
 	}
 	// Highest four of a kind wins
@@ -19,7 +20,7 @@ bool FourOfAKind::isPokerPlayable(Hand& selection, Hand& topPile){
 		myHighest=selection.getCard(5)->getRank();
 	}
 
-    if(topPile.getCard(0)->getRank()==topPile.getCard(1)->getRank()){
+    if(topHand.getCard(0)->getRank()==topHand.getCard(1)->getRank()){
         pileHighest=selection.getCard(0)->getRank();
     }else{
         pileHighest=selection.getCard(5)->getRank();

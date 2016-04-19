@@ -5,14 +5,14 @@
 #include "../include/Game.h"
 
 Game::Game(std::string name){
-    _deck = new Deck("Deck");
     _name = name;
-	_isActive = true;
-	_playerTurn = 0;
-	_gameTurn = 0;
+    _isActive = true;
+    _playerTurn = 0;
+    _gameTurn = 0;
 }
 
 void Game::createGame() {
+    setRules();
     createPlayers();
     shuffleDeck();
     dealCards();
@@ -23,19 +23,19 @@ void Game::shuffleDeck(){
 }
 
 bool Game::isActive() {
-	return _isActive;
+    return _isActive;
 }
 
 void Game::setActive(bool active) {
-	_isActive = active;
+    _isActive = active;
 }
 
 void Game::gameLoop() {
-	while (_isActive && _vPlayers.size()) {
-		_playerTurn = _gameTurn % _vPlayers.size();
-		playerAction(*_vPlayers[_playerTurn]);
+    while (_isActive && _vPlayers.size()) {
+        _playerTurn = _gameTurn % _vPlayers.size();
+        playerAction(*_vPlayers[_playerTurn]);
         _gameTurn++;
-	}
+    }
 }
 
 void Game::setMaxCardsPerPlay(int playLimit){
@@ -87,11 +87,11 @@ std::string Game::getDescription() {
 }
 
 Player& Game::getCurrentPlayer() {
-	return *_vPlayers[_gameTurn % _vPlayers.size()];
+    return *_vPlayers[_gameTurn % _vPlayers.size()];
 }
 
 int Game::getTurn() {
-	return _vPlayers.size() ? _gameTurn / _vPlayers.size() : 0;
+    return _vPlayers.size() ? _gameTurn / _vPlayers.size() : 0;
 }
 
 Game::~Game() {

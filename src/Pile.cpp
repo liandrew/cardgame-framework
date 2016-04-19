@@ -6,6 +6,8 @@
 #include "../include/Pile.h"
 
 Pile::Pile(const std::string &type){
+    Hand initializeTop = Hand("Pile");
+    setTopHand(initializeTop);
     _type = type;
 }
 

@@ -6,24 +6,10 @@
 #include <ctime>
 #include <map>
 #include "../include/CardCollection.h"
-#include "../include/Card.h"
 #include "../include/Deck.h"
 #include <cstdlib>
 
-Deck::Deck(const std::string &type) : CardCollection(type){
-    for(int suite=0; suite<= 3; suite++){
-        for(int rank=1; rank<=13; rank++){
-            addCard(new Card(rank,(Suite)suite));
-        }
-    }
-    _vOriginal = _vCards;
-}
-
-Deck::~Deck() {
-    for (int i = _vOriginal.size() - 1; i >= 0; --i) {
-        delete _vOriginal[i];
-    }
-}
+Deck::Deck(const std::string &type) : CardCollection(type){ }
 
 void Deck::deal(CardCollection &hand, int handSize){
 	transfer(hand, _vCards.size() - handSize, _vCards.size() - 1);
@@ -42,4 +28,19 @@ void Deck::shuffle(){
 		placed[place] = card;
 		_vCards.push_back(card);
 	}
+}
+
+Deck::~Deck() {
+    for (int i = _vOriginal.size() - 1; i >= 0; --i) {
+        delete _vOriginal[i];
+    }
+}
+
+void Deck::makeDeck() {
+    for(int suite=0; suite<= 3; suite++){
+        for(int rank=1; rank<=13; rank++){
+            addCard(new Card(rank,(Suite)suite));
+        }
+    }
+    _vOriginal = _vCards;
 }

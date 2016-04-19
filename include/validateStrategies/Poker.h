@@ -25,10 +25,10 @@ private:
     Straight _straightStrategy;
 public:
     void setPokerPlayable(IPokerValidatePlay& strategy);
-    bool isPokerPlayable(Hand& selection, Hand& topPile);
+    bool isPokerPlayable(Hand& selection, Pile& playPile);
     PokerHand isPokerValid(Hand& selection);
 	 //Checks if selected hand can be played against the top pile hand
-    bool isPlayable(Hand& selection, Hand& topPile);
+    bool isPlayable(Hand& selection, Pile& playPile);
     bool isValid(Hand& selection);
 };
 

@@ -1,29 +1,32 @@
 #include "../include/TestGame.h"
-#include <iostream>
 #include <sstream>
 
 using namespace std;
 
 TestGame::TestGame() : Game("Test Solitaire Game"){
     _factory = new SolitaireFactory();
+    _deck = _factory->makeDeck();
+
     _tableauSize = 7;
     _pileSelection = -1;
 
-	_winningPlayer = nullptr;
-	setMaxCardsPerPlay(1);
-
-	shuffleDeck();
+    _winningPlayer = nullptr;
+    shuffleDeck();
 
     cout << "Testing shuffled deck contents: " << endl;
     cout << "-----------------------------------" << endl;
-	for (int i = 0; i < _deck->size(); ++i) {
-		cout << _deck->getCard(i)->toFullString() << endl;
-	}
+    for (int i = 0; i < _deck->size(); ++i) {
+        cout << _deck->getCard(i)->toFullString() << endl;
+    }
     cout << "-----------------------------------" << endl;
 }
 
+void TestGame::shuffleDeck(){
+    _deck->shuffle();
+}
+
 void TestGame::createPlayers() {
-	_vPlayers.push_back(_factory->makePlayer("Player"));
+    _vPlayers.push_back(_factory->makePlayer("Player"));
 }
 
 void TestGame::dealCards() {
@@ -34,9 +37,8 @@ void TestGame::dealCards() {
             _pile->get(i).getCard(j)->setTurned(true);
         }
     }
-
-	cout << "Starting " << getName() << endl;
-	cout << "-----------------------------------" << endl;
+    cout << "Starting " << getName() << endl;
+    cout << "-----------------------------------" << endl;
 }
 
 bool TestGame::isWinner(Player &player) {
@@ -47,27 +49,27 @@ bool TestGame::isWinner(Player &player) {
     if (!diamonds.size() || !clubs.size() || !hearts.size() || !spades.size()) {
         return false;
     }
-	if (diamonds.top()->getRankStr() == "A" &&
+    if (diamonds.top()->getRankStr() == "A" &&
         clubs.top()->getRankStr() == "A" &&
         hearts.top()->getRankStr() == "A" &&
         spades.top()->getRankStr() == "A") {
-		_winningPlayer = &player;
-		setWinCondition();
-		return true;
-	}
-	return false;
+            _winningPlayer = &player;
+            setWinCondition();
+            return true;
+    }
+    return false;
 }
 
 void TestGame::setWinCondition() {
-	if (_winningPlayer) {
-		setActive(false);
-		cout << _winningPlayer->getName() << " wins!" << endl;
-	}
+    if (_winningPlayer) {
+        setActive(false);
+        cout << _winningPlayer->getName() << " wins!" << endl;
+    }
 }
 
 /*
  * Shows the tableau, and allows the player to place cards from their hand into a tableau.
- * Not implemented is transferring cards from your hand/a tableau to a foundation. 
+ * Not implemented is transferring cards from your hand/a tableau to a foundation.
  */
 void TestGame::playerAction(Player& player) {
     for (int i = 0; i < _tableauSize; ++i) {
@@ -78,11 +80,11 @@ void TestGame::playerAction(Player& player) {
         cout << "Top card: " << player.getHand().top()->toString() << endl;
     }
 
-	bool isPlayable = false;
-	bool isValid = false;
+    bool isPlayable = false;
+    std::string selectedOption;
     std::string choice = "";
 
-	do{
+    do{
         Hand* currentHand = nullptr;
         if (player.getHand().size()) {
             cout << "Choose a tableau (1-7). Or d to Draw again. or q to quit." << endl;
@@ -103,9 +105,16 @@ void TestGame::playerAction(Player& player) {
                 currentHand = &_pile->get(_pileSelection);
             }
 
-            isValid = player.makeSelection(getMaxCardsPerPlay(), _pile->get(_pileSelection));
+            Pile* selectedPile = new Pile("Temp Pile");
+            selectedPile->setTopHand(*currentHand);
 
-            isPlayable = player.isPlayable(player.getSelection(), _pile->get(_pileSelection));
+            selectedOption = player.makeSelection(getMaxCardsPerPlay(), *selectedPile);
+
+            isPlayable = player.isPlayable(player.getSelection(), *selectedPile);
+
+            if(selectedPile){
+                delete selectedPile;
+            }
 
             if (isPlayable) {
                 player.play(*_pile, _pileSelection);
@@ -115,7 +124,7 @@ void TestGame::playerAction(Player& player) {
                 player.clearSelection();
             }
         }
-	} while(!isPlayable);
+    } while(!isPlayable);
 }
 
 TestGame::~TestGame() {
@@ -133,7 +142,7 @@ bool SolitairePlayer::play(Pile& playPile, int handIndex) {
     Hand& hand = playPile[handIndex];
     _selection->transfer(hand, _selection->size() - 1);
     _hand->popCard();
-	return true;
+    return true;
 }
 
 Player* SolitaireFactory::makePlayer(std::string name) {
@@ -157,18 +166,63 @@ Pile* SolitaireFactory::makePile() {
     return solitairePile;
 }
 
-bool SolitairePlayer::makeSelection(int playLimit, Hand& topPile) {
+std::string SolitairePlayer::makeSelection(int playLimit, Pile& playPile) {
     _selection->removeAll();
     if (_hand->size()) {
         _selection->addCard(_hand->top());
-        return true;
+        return "valid";
     } else {
-        return false;
+        return "invalid";
     }
 }
 
-bool SolitairePlayer::isPlayable(Hand& selection, Hand& pile) {
-    int pileRank = pile.top()->getRank();
+bool SolitairePlayer::isPlayable(Hand& selection, Pile& pile) {
+    Card* topCard = pile.getTopHand().top();
+    int pileRank = topCard->getRank();
     if (pileRank == 1) pileRank = 14;
     return (selection.top()->getRank() == pileRank - 1);
 }
+
+void TestGame::setRules() {
+    setMaxCardsPerPlay(1);
+}
+
+Deck* SolitaireFactory::makeDeck() {
+    return new SolitaireDeck("Deck");
+}
+
+SolitaireCard::SolitaireCard(int rank, Suite suite, bool turned) : Card(rank, suite, turned) {
+    _rank = rank;
+    _suite = suite;
+    _turned = turned;
+}
+
+std::string SolitaireCard::getRankStr() {
+    return Card::getRankStr();
+}
+
+std::string SolitaireCard::getSuiteStr() {
+    return Card::getSuiteStr();
+}
+
+std::string SolitaireCard::toString() {
+    return Card::toString();
+}
+
+std::string SolitaireCard::toFullString() {
+    return Card::toFullString();
+}
+
+SolitaireDeck::SolitaireDeck(const std::string &type) : Deck(type) {
+    makeDeck();
+}
+
+void SolitaireDeck::makeDeck() {
+    for(int suite=0; suite<= 3; suite++){
+        for(int rank=1; rank<=13; rank++){
+            addCard(new SolitaireCard(rank,(Suite)suite));
+        }
+    }
+    _vOriginal = _vCards;
+}
+

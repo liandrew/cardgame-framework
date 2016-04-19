@@ -18,24 +18,19 @@ class Player {
 private:
     std::string _name;
     IValidatePlay* _pValidatePlay;
-	// This will go into game specific sub classes for a3, for now it is here for testing purposes
-    BigTwo_Singles singlesStrategy;
-    BigTwo_Pairs pairsStrategy;
-    BigTwo_Triples triplesStrategy;
-    Poker pokerStrategy;
 protected:
     Hand* _hand = NULL;
     Hand* _selection = NULL;
 public:
     Player(std::string name);
     virtual std::string getName();
-    virtual bool isHuman();
+    virtual bool isHuman()=0;
     void setPlayable(IValidatePlay& strategy);
-    virtual bool isPlayable(Hand& selection, Hand& topPile);
-    virtual bool makeSelection(int playLimit, Hand& topPile);
+    virtual bool isPlayable(Hand& selection, Pile& playPile);
+    virtual std::string makeSelection(int playLimit, Pile& playPile)=0;
     virtual void clearSelection();
     virtual bool isValid(Hand& selection);
-    virtual bool play(Pile& playPile, int handIndex = -1);
+    virtual bool play(Pile& playPile, int handIndex = -1)=0;
     Hand& getHand();
     Hand& getSelection();
     virtual ~Player();
