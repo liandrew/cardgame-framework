@@ -42,7 +42,7 @@ public:
     void setName(std::string);
     std::string getName();
 
-    virtual void shuffleDeck();
+    void shuffleDeck();
 	bool isActive();
 	void setActive(bool active);
 
