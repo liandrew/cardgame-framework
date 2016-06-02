@@ -10,15 +10,6 @@ g++ src/Player.cpp src/CardCollection.cpp src/Card.cpp src/Hand.cpp src/Pile.cpp
 
 ## Framework Design
 
-### BigTwo class diagram
-![BigTwo UML](/docs/bigTwo_class_diagram.png?raw=true "BigTwo")
-
-### CrazyEight class diagram
-![CrazyEight UML](/docs/jesse_a1_class_diagram.png?raw=true "CrazyEight")
-
-### Card Game Framework UML
-![Card Game Framework UML](/docs/game_class_diagram.png?raw=true "Card Game Framework")
-
 ### Design Princples used
 
 1.  Programming to an interface
