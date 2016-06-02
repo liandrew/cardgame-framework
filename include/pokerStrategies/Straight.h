@@ -10,7 +10,7 @@
 
 class Straight : public IPokerValidatePlay {
 public:
-    bool isPokerPlayable(Hand& selection, Pile& playPile);
+  bool isPokerPlayable(Hand& selection, Pile& playPile);
 };
 
 #endif //CARD_GAME_FRAMEWORK_STRAIGHT_H

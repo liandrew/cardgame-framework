@@ -9,13 +9,13 @@
 
 class Deck : public CardCollection {
 protected:
-    std::vector<Card*> _vOriginal;
+  std::vector<Card*> _vOriginal;
 public:
-    ~Deck();
-    Deck(const std::string &type);
-    void deal(CardCollection &hand, int handSize);
-    void shuffle();
-    virtual void makeDeck()=0;
+  ~Deck();
+  Deck(const std::string &type);
+  void deal(CardCollection &hand, int handSize);
+  void shuffle();
+  virtual void makeDeck()=0;
 };
 
 #endif //CARD_GAME_FRAMEWORK_DECK_H

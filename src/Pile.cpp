@@ -6,48 +6,48 @@
 #include "../include/Pile.h"
 
 Pile::Pile(const std::string &type){
-    Hand initializeTop = Hand("Pile");
-    setTopHand(initializeTop);
-    _type = type;
+  Hand initializeTop = Hand("Pile");
+  setTopHand(initializeTop);
+  _type = type;
 }
 
 void Pile::setPile(std::vector<Hand> vPile){
-	_vPile = vPile;
+  _vPile = vPile;
 }
 
 std::vector<Hand> Pile::getPile(){
-	return _vPile;
+  return _vPile;
 }
 
 Hand& Pile::getTopHand(){
-	return _vPile.back();
+  return _vPile.back();
 }
 
 Hand & Pile::get(int i) {
-    return _vPile[i];
+  return _vPile[i];
 }
 
 Hand & Pile::operator[](int i) {
-    return _vPile[i];
+  return _vPile[i];
 }
 
 void Pile::setTopHand(Hand play){
-	_vPile.push_back(play);
+  _vPile.push_back(play);
 }
 
 void Pile::clearPile(){
-	_vPile.clear();
+  _vPile.clear();
 }
 
 int Pile::pileSize(){
-	return _vPile.size();
+  return _vPile.size();
 }
 
 std::string Pile::toString(){
-	std::string result = "";
-	std::vector<Hand>::iterator it = Pile::_vPile.begin();
-	for(; it != Pile::_vPile.end(); ++it) {
-		result = result + (*it).toString();
-	}
-	return result;
+  std::string result = "";
+  std::vector<Hand>::iterator it = Pile::_vPile.begin();
+  for(; it != Pile::_vPile.end(); ++it) {
+    result = result + (*it).toString();
+  }
+  return result;
 }

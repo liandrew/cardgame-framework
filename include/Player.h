@@ -16,24 +16,24 @@
 
 class Player {
 private:
-    std::string _name;
-    IValidatePlay* _pValidatePlay;
+  std::string _name;
+  IValidatePlay* _pValidatePlay;
 protected:
-    Hand* _hand = NULL;
-    Hand* _selection = NULL;
+  Hand* _hand = NULL;
+  Hand* _selection = NULL;
 public:
-    Player(std::string name);
-    virtual std::string getName();
-    virtual bool isHuman()=0;
-    void setPlayable(IValidatePlay& strategy);
-    virtual bool isPlayable(Hand& selection, Pile& playPile);
-    virtual std::string makeSelection(int playLimit, Pile& playPile)=0;
-    virtual void clearSelection();
-    virtual bool isValid(Hand& selection);
-    virtual bool play(Pile& playPile, int handIndex = -1)=0;
-    Hand& getHand();
-    Hand& getSelection();
-    virtual ~Player();
+  Player(std::string name);
+  virtual std::string getName();
+  virtual bool isHuman()=0;
+  void setPlayable(IValidatePlay& strategy);
+  virtual bool isPlayable(Hand& selection, Pile& playPile);
+  virtual std::string makeSelection(int playLimit, Pile& playPile)=0;
+  virtual void clearSelection();
+  virtual bool isValid(Hand& selection);
+  virtual bool play(Pile& playPile, int handIndex = -1)=0;
+  Hand& getHand();
+  Hand& getSelection();
+  virtual ~Player();
 };
 
 #endif //CARD_GAME_FRAMEWORK_PLAYER_H

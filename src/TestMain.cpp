@@ -10,11 +10,11 @@
 using namespace std;
 
 int main(int argc, char** argv) {
-	TestGame testing;
-	testing.createGame();
-	testing.gameLoop();
+  TestGame testing;
+  testing.createGame();
+  testing.gameLoop();
 
-	system("pause");
-		
-	return 0;
+  system("pause");
+
+  return 0;
 }

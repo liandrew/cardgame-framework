@@ -10,8 +10,8 @@
 
 class BigTwo_Singles : public IValidatePlay {
 public:
-    bool isPlayable(Hand& selection, Pile& topPile);
-    bool isValid(Hand& selection);
+  bool isPlayable(Hand& selection, Pile& topPile);
+  bool isValid(Hand& selection);
 };
 
 #endif //CARD_GAME_FRAMEWORK_SINGLES_H

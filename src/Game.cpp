@@ -5,97 +5,97 @@
 #include "../include/Game.h"
 
 Game::Game(std::string name){
-    _name = name;
-    _isActive = true;
-    _playerTurn = 0;
-    _gameTurn = 0;
+  _name = name;
+  _isActive = true;
+  _playerTurn = 0;
+  _gameTurn = 0;
 }
 
 void Game::createGame() {
-    setRules();
-    createPlayers();
-    shuffleDeck();
-    dealCards();
+  setRules();
+  createPlayers();
+  shuffleDeck();
+  dealCards();
 }
 
 void Game::shuffleDeck(){
-    _deck->shuffle();
+  _deck->shuffle();
 }
 
 bool Game::isActive() {
-    return _isActive;
+  return _isActive;
 }
 
 void Game::setActive(bool active) {
-    _isActive = active;
+  _isActive = active;
 }
 
 void Game::gameLoop() {
-    while (_isActive && _vPlayers.size()) {
-        _playerTurn = _gameTurn % _vPlayers.size();
-        playerAction(*_vPlayers[_playerTurn]);
-        _gameTurn++;
-    }
+  while (_isActive && _vPlayers.size()) {
+    _playerTurn = _gameTurn % _vPlayers.size();
+    playerAction(*_vPlayers[_playerTurn]);
+    _gameTurn++;
+  }
 }
 
 void Game::setMaxCardsPerPlay(int playLimit){
-    _playLimit = playLimit;
+  _playLimit = playLimit;
 }
 
 int Game::getMaxCardsPerPlay(){
-    return _playLimit;
+  return _playLimit;
 }
 
 void Game::setHandLimit(int handLimit){
-    _handLimit = handLimit;
+  _handLimit = handLimit;
 }
 
 int Game::getHandLimit(){
-    return _handLimit;
+  return _handLimit;
 }
 
 void Game::setMaxPlayers(int limit){
-    _maxPlayers = limit;
+  _maxPlayers = limit;
 }
 
 int Game::getMaxPlayers(){
-    return _maxPlayers;
+  return _maxPlayers;
 }
 
 void Game::setNumberOfCPUPlayers(int num){
-    _CPUPlayers = num;
+  _CPUPlayers = num;
 }
 
 int Game::getNumberOfCPUPlayers(){
-    return _CPUPlayers;
+  return _CPUPlayers;
 }
 
 void Game::setDescription(std::string description) {
-    _description = description;
+  _description = description;
 }
 
 void Game::setName(std::string name){
-    _name = name;
+  _name = name;
 }
 
 std::string Game::getName(){
-    return _name;
+  return _name;
 }
 
 std::string Game::getDescription() {
-    return _description;
+  return _description;
 }
 
 Player& Game::getCurrentPlayer() {
-    return *_vPlayers[_gameTurn % _vPlayers.size()];
+  return *_vPlayers[_gameTurn % _vPlayers.size()];
 }
 
 int Game::getTurn() {
-    return _vPlayers.size() ? _gameTurn / _vPlayers.size() : 0;
+  return _vPlayers.size() ? _gameTurn / _vPlayers.size() : 0;
 }
 
 Game::~Game() {
-    if (_deck) {
-        delete _deck;
-    }
+  if (_deck) {
+    delete _deck;
+  }
 }

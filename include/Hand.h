@@ -10,15 +10,15 @@
 
 class Hand : public CardCollection {
 public:
-    bool concealTurned;
+  bool concealTurned;
 
-    Hand(const std::string &type);
-    void sort();
-    Card* findLargerThan(Card* card);
-    Card* findSmallerThan(Card* card);
-    Card* findSmallest();
-    Card* findLargest();
-    std::string toString();
+ Hand(const std::string &type);
+ void sort();
+ Card* findLargerThan(Card* card);
+ Card* findSmallerThan(Card* card);
+ Card* findSmallest();
+ Card* findLargest();
+ std::string toString();
 };
 
 #endif //CARD_GAME_FRAMEWORK_HAND_H

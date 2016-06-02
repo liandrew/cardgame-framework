@@ -6,5 +6,5 @@
 #include "../../include/PokerStrategies/RoyalFlush.h"
 
 bool RoyalFlush::isPokerPlayable(Hand& selection, Pile& playPile){
-	return false;
+  return false;
 }

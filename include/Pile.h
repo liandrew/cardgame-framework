@@ -10,19 +10,19 @@
 
 class Pile {
 protected:
-    std::vector<Hand> _vPile;
-    std::string _type;
+  std::vector<Hand> _vPile;
+  std::string _type;
 public:
-    Pile(const std::string &type);
-    void setPile(std::vector<Hand> vPile);
-    std::vector<Hand> getPile();
-    Hand& getTopHand();
-    Hand& get(int i);
-    Hand& operator[](int i);
-    void setTopHand(Hand play);
-    void clearPile();
-    int pileSize();
-    virtual std::string toString();
+  Pile(const std::string &type);
+  void setPile(std::vector<Hand> vPile);
+  std::vector<Hand> getPile();
+  Hand& getTopHand();
+  Hand& get(int i);
+  Hand& operator[](int i);
+  void setTopHand(Hand play);
+  void clearPile();
+  int pileSize();
+  virtual std::string toString();
 };
 
 #endif //CARD_GAME_FRAMEWORK_PILE_H

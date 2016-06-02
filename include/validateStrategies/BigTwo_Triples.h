@@ -11,8 +11,8 @@
 
 class BigTwo_Triples : public IValidatePlay {
 public:
-    bool isPlayable(Hand& selection, Pile& playPile);
-    bool isValid(Hand& selection);
+  bool isPlayable(Hand& selection, Pile& playPile);
+  bool isValid(Hand& selection);
 };
 
 #endif //CARD_GAME_FRAMEWORK_TRIPLES_H
