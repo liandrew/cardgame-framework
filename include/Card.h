@@ -25,6 +25,12 @@ protected:
   int _rank;
   Suite _suite;
   bool _turned;
+  friend bool operator<(Card &leftCard, Card &rightCard);
+  friend bool operator==(Card &leftCard, Card &rightCard);
+  friend bool operator>=(Card &leftCard, Card &rightCard);
+  friend bool operator>(Card &leftCard, Card &rightCard);
+  friend bool operator<=(Card &leftCard, Card &rightCard);
+  friend bool equalTo(Card &leftCard, Card &rightCard);
 };
 
 struct CardStrings {

@@ -27,6 +27,41 @@ void Card::setTurned(bool turned) {
   _turned = turned;
 }
 
+bool operator< (Card &leftCard, Card &rightCard){
+  return leftCard.getRank() < rightCard.getRank();
+}
+
+bool operator<= (Card &leftCard, Card &rightCard){
+  if(leftCard.getRank() < rightCard.getRank()){
+    return true;
+  }else if(equalTo(leftCard, rightCard)){
+    return true;
+  }
+  return false;
+}
+
+bool operator> (Card &leftCard, Card &rightCard){
+  return leftCard.getRank() > rightCard.getRank();
+}
+
+bool operator>= (Card &leftCard, Card &rightCard){
+  if(leftCard.getRank() > rightCard.getRank()){
+    return true;
+  }else if(equalTo(leftCard, rightCard) ){
+    return true;
+  }
+  return false;
+}
+
+bool operator== (Card &leftCard, Card &rightCard){
+  return equalTo(leftCard, rightCard);
+}
+
+bool equalTo(Card &leftCard, Card &rightCard){
+  return (leftCard.getRank() == rightCard.getRank() &&
+          leftCard.getSuite() == rightCard.getSuite());
+}
+
 std::string Card::getRankStr() {
   return CardStrings::getShortRank(_rank);
 }

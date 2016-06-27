@@ -11,15 +11,15 @@ Hand::Hand(const std::string &type) : CardCollection(type){
 }
 
 void Hand::sort(){
-  int n = this->size();
-  Hand temp("");
-  for (unsigned int i = n - 1; i > 0; i--) {
-    for (unsigned int j = 0; j < i; j++) {
-      if (_vCards[j]->getRank() > _vCards[j+1]->getRank()) {
-        temp.addCard(this->getCard(j));
-        this->addCard(j, this->_vCards[j+1]);
-        this->addCard(j + 1, temp.popCard());
-      }
+  int handSize = this->size();
+  Hand swap("");
+  for (unsigned int i = 0; i < handSize; i++) {
+    Card curCard = *(this->getCard(i));
+    for (unsigned int j = i; j > 0 &&
+      curCard < (*(this->getCard(j - 1))); j--) {
+        swap.addCard(this->getCard(j));
+        this->addCard(j, this->_vCards[j-1]);
+        this->addCard(j-1, swap.popCard());
     }
   }
 }
